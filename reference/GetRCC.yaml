@@ -1,0 +1,570 @@
+openapi: 3.1.0
+x-stoplight:
+  id: ljhjy0beogeoz
+info:
+  title: GetRCC
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /Partner/v1/Ordering/pxRetrieveRCC:
+    post:
+      summary: Create New User
+      operationId: post-getRcc
+      responses:
+        '200':
+          description: User Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                New User Bob Fellow:
+                  value:
+                    id: 12
+                    firstName: Bob
+                    lastName: Fellow
+                    email: bob.fellow@gmail.com
+                    dateOfBirth: '1996-08-24'
+                    emailVerified: false
+                    createDate: '2020-11-18'
+        '400':
+          description: Missing Required Information
+        '409':
+          description: Email Already Taken
+        '':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messageStatus:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        statusCode:
+                          type: string
+                        internalStatusCode:
+                          type: string
+                        statusMessage:
+                          type: string
+                        timestamp:
+                          type: string
+                  rccResponse:
+                    type: object
+                    properties:
+                      transactionId:
+                        type: string
+                      header:
+                        type: string
+                      rccEnglish:
+                        type: object
+                        properties:
+                          monthlyRatesCharges:
+                            type: object
+                            properties:
+                              monthlyRate:
+                                type: object
+                                properties:
+                                  description:
+                                    type: string
+                              product:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    price:
+                                      type: integer
+                                    name:
+                                      type: string
+                              taxes:
+                                type: object
+                                properties:
+                                  description:
+                                    type: string
+                                  taxesList:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        price:
+                                          type: number
+                                        name:
+                                          type: string
+                          oneTimeCharges:
+                            type: object
+                            properties:
+                              description:
+                                type: string
+                              productList:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    price:
+                                      type: integer
+                                    name:
+                                      type: string
+                          proratedChargesMonthlyBilling:
+                            type: object
+                            properties:
+                              description:
+                                type: string
+                              firstMonthBill:
+                                type: string
+                              secondMonthBill:
+                                type: string
+                          paperlessBilling:
+                            type: object
+                            properties:
+                              description:
+                                type: string
+                          termText:
+                            type: object
+                            properties:
+                              termAgreementDesc:
+                                type: string
+                              equipDesc:
+                                type: string
+                              serviceDesc:
+                                type: string
+                          confirmationText:
+                            type: object
+                            properties:
+                              description:
+                                type: string
+                          installationText:
+                            type: object
+                            properties:
+                              description:
+                                type: string
+                      rccSpanish:
+                        type: object
+                        properties:
+                          monthlyRatesCharges:
+                            type: object
+                            properties:
+                              monthlyRate:
+                                type: object
+                                properties:
+                                  description:
+                                    type: string
+                              product:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    price:
+                                      type: integer
+                                    name:
+                                      type: string
+                              taxes:
+                                type: object
+                                properties:
+                                  taxesList:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        price:
+                                          type: number
+                                        name:
+                                          type: string
+                          oneTimeCharges:
+                            type: object
+                            properties:
+                              description:
+                                type: string
+                              productList:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    price:
+                                      type: integer
+                                    name:
+                                      type: string
+                          proratedChargesMonthlyBilling:
+                            type: object
+                            properties:
+                              description:
+                                type: string
+                              firstMonthBill:
+                                type: string
+                              secondMonthBill:
+                                type: string
+                          paperlessBilling:
+                            type: object
+                            properties:
+                              description:
+                                type: string
+                          termText:
+                            type: object
+                            properties:
+                              termAgreementDesc:
+                                type: string
+                              equipDesc:
+                                type: string
+                              serviceDesc:
+                                type: string
+                          confirmationText:
+                            type: object
+                            properties:
+                              description:
+                                type: string
+                          installationText:
+                            type: object
+                            properties:
+                              description:
+                                type: string
+                x-examples:
+                  example-1:
+                    messageStatus:
+                      - statusCode: '200'
+                        internalStatusCode: ''
+                        statusMessage: ''
+                        timestamp: '2022-03-24 07:07:59'
+                    rccResponse:
+                      transactionId: 1648122834765bbe
+                      header: Let’s cover some information about the order you are placing today-
+                      rccEnglish:
+                        monthlyRatesCharges:
+                          monthlyRate:
+                            description: 'Monthly Rates and Charges:  Your monthly recurring charge for your products and/or services will be $122.00.  Your monthly recurring charges for services and equipment and all fees and taxes are not guaranteed and may increase. These charges includes:'
+                          product:
+                            - price: 10
+                              name: Cyber Shield
+                            - price: 15
+                              name: Premium Modem (Lease)
+                            - price: 7
+                              name: Personal TechPro
+                            - price: 50
+                              name: 'Package: Simply Unlimited Internet'
+                            - price: 40
+                              name: 'Package: Simply Unlimited Phone'
+                          taxes:
+                            description: 'Taxes: More information about your fees and taxes can be found at www.centurylink.com/feesandtaxes.  Taxes in this quote may be estimated and may change.  The following are a total of $10.02 per month for your order.  This includes:'
+                            taxesList:
+                              - price: 1.2
+                                name: City 911 Tax
+                              - price: 0.09
+                                name: State 911 Tax
+                              - price: 0.18
+                                name: State 988 Health Crisis and Suicide Prevention Fee
+                              - price: 0.06
+                                name: State Telecommunications Relay Service Surcharge
+                              - price: 0.82
+                                name: COLORADO Universal Service Fund Surcharge
+                              - price: 2.15
+                                name: Federal Universal Service Fund Surcharge
+                              - price: 0.5
+                                name: Facility Relocation Cost Recovery Fee
+                              - price: 0.14
+                                name: ARAPAHOE Sales Tax
+                              - price: 2.08
+                                name: AURORA Sales Tax
+                              - price: 1.6
+                                name: COLORADO Sales Tax
+                              - price: 0.06
+                                name: District Sales Tax
+                              - price: 1.14
+                                name: Federal Excise Tax
+                        oneTimeCharges:
+                          description: 'One Time Charges:  The one-time charges are $0.00.  These charges will be reflected on your first bill.  This includes:'
+                          productList:
+                            - price: 99
+                              name: Tech Installation
+                            - price: -99
+                              name: Online Tech Install Waiver MAR 30 MAR 30
+                        proratedChargesMonthlyBilling:
+                          description: 'Proration:  We bill for your services one month in advance. As a result, prorated charges or credits for services, taxes, and fees may apply and make your next bill higher or lower than future bills.  If you are removing services during a current bill cycle, applicable credits for removed services may not be included in this quote.  However, these credits will appear on future invoices. If your service start date changes for any reason, such changes are not included in this quote but you may see prorated charges or credits on your bill for affected services, taxes, and fees.'
+                          firstMonthBill: '1st Invoice: The amount of your first bill will be $188.62.'
+                          secondMonthBill: '2nd Invoice: The amount of your second bill will be $132.02 which includes your monthly price for service and any applicable fees, surcharges, and taxes.'
+                        paperlessBilling:
+                          description: 'Paperless Billing:  If you selected automated payment and/or paperless billing services or these services are a part of your selected offer or plan, your monthly rates for services are contingent on you maintaining these services. To register for these services or learn more about them, please visit www.centurylink.com/Pages/Support/.'
+                        termText:
+                          termAgreementDesc: 'Service Agreement: As a condition of receiving services and equipment, customers are subject to service agreements, which you have accepted or must accept prior to service installation.  Please carefully review your agreements.  You can view the agreements, including important provisions on arbitration requirements and limits on our liability at www.centurylink.com/terms.'
+                          equipDesc: 'Leased Equipment Non-Return Charges. When you cancel your services, all leased equipment must be returned within 30 days to avoid non-return fees of up to $200 per piece of leased equipment.  We will send you an email once your services are disconnected with a link to print a return label or you can go to www.centurylink.com/returnmodem at any time to print your modem return label.'
+                          serviceDesc: 'Additional installation charges:  These charges may apply, for example, your residence has never had CenturyLink service or more jacks are needed. The charge for service line installation is $150 to $300 and could be more if extensive work is needed such as connecting a residence that is a significant distance from our network.  Our technician will assess the property and review any charges with you for approval prior to connecting your service.'
+                        confirmationText:
+                          description: 'Confirmation Letters:  You will receive a confirmation letter by email or by mail that will list the services you have selected, your expected charges for those services, and additional information.'
+                        installationText:
+                          description: 'Installation Expectations:  Allow 2-6 hours for set up.  An adult over the age of 18 will need to be present during the installation. If you rent your residence, landlord permission is required.  If additional charges are required during installation, we will notify you and get your approval for those charges before conneting service.'
+                      rccSpanish:
+                        monthlyRatesCharges:
+                          monthlyRate:
+                            description: 'Tarifas y cargos mensuales:  No hay un compromiso de tiempo con esta oferta.  Su precio recurrente mensual por sus productos y/o servicios será $122.00.  Los impuestos no están incluidos en este monto.  Esto incluye:'
+                          product:
+                            - price: 10
+                              name: Cyber Shield
+                            - price: 15
+                              name: Premium Modem (Lease)
+                            - price: 7
+                              name: Personal TechPro
+                            - price: 50
+                              name: 'Package: Simply Unlimited Internet'
+                            - price: 40
+                              name: 'Package: Simply Unlimited Phone'
+                          taxes:
+                            taxesList:
+                              - price: 1.2
+                                name: City 911 Tax
+                              - price: 0.09
+                                name: State 911 Tax
+                              - price: 0.18
+                                name: State 988 Health Crisis and Suicide Prevention Fee
+                              - price: 0.06
+                                name: State Telecommunications Relay Service Surcharge
+                              - price: 0.82
+                                name: COLORADO Universal Service Fund Surcharge
+                              - price: 2.15
+                                name: Federal Universal Service Fund Surcharge
+                              - price: 0.5
+                                name: Facility Relocation Cost Recovery Fee
+                              - price: 0.14
+                                name: ARAPAHOE Sales Tax
+                              - price: 2.08
+                                name: AURORA Sales Tax
+                              - price: 1.6
+                                name: COLORADO Sales Tax
+                              - price: 0.06
+                                name: District Sales Tax
+                              - price: 1.14
+                                name: Federal Excise Tax
+                        oneTimeCharges:
+                          description: 'Cargos únicos:  Los cargos únicos son $0.00.  Estos cargos se verán reflejados en su primera factura.  Esto incluye:'
+                          productList:
+                            - price: 99
+                              name: Tech Installation
+                            - price: -99
+                              name: Online Tech Install Waiver MAR 30 MAR 30
+                        proratedChargesMonthlyBilling:
+                          description: 'Prorrateo:  Le facturaremos por los servicios con un mes de anticipación. En su primera factura, usted podría ver los cargos prorrateados por servicios y los impuestos, tarifas y sobrecargos desde la fecha en que empiece el servicio hasta su próximo ciclo de facturación, más un mes completo de cargos. Debido a esto, su primera factura será más alta que otras facturas en el futuro.'
+                          firstMonthBill: '1ra factura: El monto de su primera factura será $188.62, más cualquier cargo prorrateado según lo descrito antes.  Los impuestos no están incluidos en este monto.'
+                          secondMonthBill: '2da factura: El monto de su segunda factura será $132.02, lo cual incluye su precio mensual por el servicio y cualquier tarifa y sobrecargo aplicable, pero excluye impuestos.'
+                        paperlessBilling:
+                          description: 'Facturación sin papel:  Si selecciona una oferta que requiera pago automático o facturación sin papel, debe mantener el pago automático o la facturación sin papel para recibir los descuentos aplicables.  Si aún no se ha registrado en el pago automático y la facturación sin papel, lo animamos a registrarse en estos servicios para para asegurarse de recibir su factura en la forma más eficiente posible.  Si le gustaría configurarlo, puede registrarse en línea en CenturyLink.com después de que sus servicios hayan sido instalados.'
+                        termText:
+                          termAgreementDesc: 'Duración del contrato:  No hay un compromiso de tiempo con su paquete.  Acuerdo de servicio: Los servicios de CenturyLink están sujetos a acuerdos de servicios como condición para recibir dichos servicios y el equipo relacionado. Puede verlos en línea en www.centurylink.com/terms.  Los términos clave incluyen límites y requisitos de mediación bajo la responsabilidad de CenturyLink.  El servicio mensual y las tarifas y cuotas por equipo pueden aumentar y no están garantizados, a menos que sean parte de una tarifa promocional, Price for Life o un compromiso de tiempo definido.'
+                          equipDesc: 'Equipo:  Acuerdo de arrendamiento: Su módem es arrendado. Si usted cancela su servicio, la política de devoluciones de CenturyLink requiere que devuelva todo el equipo arrendado a más tardar 30 días después de que el servicio sea cancelado para evitar las tarifas de $ 150.00 por no devolver el módem. Una política de devolución e instrucciones serán incluidas con su equipo.'
+                          serviceDesc: |-
+                            Si se requieren cargos adicionales para la instalación de su servicio, le notificaremos y pediremos su aprobación para dichos cargos antes de conectar el servicio.
+
+                            Este mensaje es propiedad de CenturyLink y puede contener información confidencial o privilegiada. El uso no autorizado de este mensaje está estrictamente prohibido y podría ser ilegal. Si recibió este mensaje por error, por favor notifique al remitente inmediatamente respondiendo al correo electrónico y destruya todas las copias del mensaje y cualquier archivo adjunto.
+                        confirmationText:
+                          description: 'Cartas de confirmación:  Cuando se acerque la fecha en que sus servicios se vuelvan disponibles, usted recibirá una carta de confirmación por medio del correo postal de los Estados Unidos o a la dirección de correo electrónico que nos ha proporcionado.  La carta enumerará los servicios que ha seleccionado hoy, sus cargos mensuales esperados por dichos servicios y alguna información adicional.'
+                        installationText:
+                          description: 'Expectativas de instalación:  Reserve de 2 a 6 horas para la configuración. Un adulto de más de 18 años debe estar presente durante la instalación.  La meta de CenturyLink es hacer que la visita a su hogar sea lo más segura y eficiente posible.  Por favor, asegúrese que nuestro técnico tenga acceso libre y rápido adentro y afuera de su hogar, un camino libre hacia la conexión y hacia el tomacorriente en donde le gustaría que sea colocado el módem.'
+              examples:
+                GetRCCResponse:
+                  value:
+                    messageStatus:
+                      - statusCode: '200'
+                        internalStatusCode: ''
+                        statusMessage: ''
+                        timestamp: '2022-03-24 07:07:59'
+                    rccResponse:
+                      transactionId: 1648122834765bbe
+                      header: Let’s cover some information about the order you are placing today-
+                      rccEnglish:
+                        monthlyRatesCharges:
+                          monthlyRate:
+                            description: 'Monthly Rates and Charges:  Your monthly recurring charge for your products and/or services will be $122.00.  Your monthly recurring charges for services and equipment and all fees and taxes are not guaranteed and may increase. These charges includes:'
+                          product:
+                            - price: 10
+                              name: Cyber Shield
+                            - price: 15
+                              name: Premium Modem (Lease)
+                            - price: 7
+                              name: Personal TechPro
+                            - price: 50
+                              name: 'Package: Simply Unlimited Internet'
+                            - price: 40
+                              name: 'Package: Simply Unlimited Phone'
+                          taxes:
+                            description: 'Taxes: More information about your fees and taxes can be found at www.centurylink.com/feesandtaxes.  Taxes in this quote may be estimated and may change.  The following are a total of $10.02 per month for your order.  This includes:'
+                            taxesList:
+                              - price: 1.2
+                                name: City 911 Tax
+                              - price: 0.09
+                                name: State 911 Tax
+                              - price: 0.18
+                                name: State 988 Health Crisis and Suicide Prevention Fee
+                              - price: 0.06
+                                name: State Telecommunications Relay Service Surcharge
+                              - price: 0.82
+                                name: COLORADO Universal Service Fund Surcharge
+                              - price: 2.15
+                                name: Federal Universal Service Fund Surcharge
+                              - price: 0.5
+                                name: Facility Relocation Cost Recovery Fee
+                              - price: 0.14
+                                name: ARAPAHOE Sales Tax
+                              - price: 2.08
+                                name: AURORA Sales Tax
+                              - price: 1.6
+                                name: COLORADO Sales Tax
+                              - price: 0.06
+                                name: District Sales Tax
+                              - price: 1.14
+                                name: Federal Excise Tax
+                        oneTimeCharges:
+                          description: 'One Time Charges:  The one-time charges are $0.00.  These charges will be reflected on your first bill.  This includes:'
+                          productList:
+                            - price: 99
+                              name: Tech Installation
+                            - price: -99
+                              name: Online Tech Install Waiver MAR 30 MAR 30
+                        proratedChargesMonthlyBilling:
+                          description: 'Proration:  We bill for your services one month in advance. As a result, prorated charges or credits for services, taxes, and fees may apply and make your next bill higher or lower than future bills.  If you are removing services during a current bill cycle, applicable credits for removed services may not be included in this quote.  However, these credits will appear on future invoices. If your service start date changes for any reason, such changes are not included in this quote but you may see prorated charges or credits on your bill for affected services, taxes, and fees.'
+                          firstMonthBill: '1st Invoice: The amount of your first bill will be $188.62.'
+                          secondMonthBill: '2nd Invoice: The amount of your second bill will be $132.02 which includes your monthly price for service and any applicable fees, surcharges, and taxes.'
+                        paperlessBilling:
+                          description: 'Paperless Billing:  If you selected automated payment and/or paperless billing services or these services are a part of your selected offer or plan, your monthly rates for services are contingent on you maintaining these services. To register for these services or learn more about them, please visit www.centurylink.com/Pages/Support/.'
+                        termText:
+                          termAgreementDesc: 'Service Agreement: As a condition of receiving services and equipment, customers are subject to service agreements, which you have accepted or must accept prior to service installation.  Please carefully review your agreements.  You can view the agreements, including important provisions on arbitration requirements and limits on our liability at www.centurylink.com/terms.'
+                          equipDesc: 'Leased Equipment Non-Return Charges. When you cancel your services, all leased equipment must be returned within 30 days to avoid non-return fees of up to $200 per piece of leased equipment.  We will send you an email once your services are disconnected with a link to print a return label or you can go to www.centurylink.com/returnmodem at any time to print your modem return label.'
+                          serviceDesc: 'Additional installation charges:  These charges may apply, for example, your residence has never had CenturyLink service or more jacks are needed. The charge for service line installation is $150 to $300 and could be more if extensive work is needed such as connecting a residence that is a significant distance from our network.  Our technician will assess the property and review any charges with you for approval prior to connecting your service.'
+                        confirmationText:
+                          description: 'Confirmation Letters:  You will receive a confirmation letter by email or by mail that will list the services you have selected, your expected charges for those services, and additional information.'
+                        installationText:
+                          description: 'Installation Expectations:  Allow 2-6 hours for set up.  An adult over the age of 18 will need to be present during the installation. If you rent your residence, landlord permission is required.  If additional charges are required during installation, we will notify you and get your approval for those charges before conneting service.'
+                      rccSpanish:
+                        monthlyRatesCharges:
+                          monthlyRate:
+                            description: 'Tarifas y cargos mensuales:  No hay un compromiso de tiempo con esta oferta.  Su precio recurrente mensual por sus productos y/o servicios será $122.00.  Los impuestos no están incluidos en este monto.  Esto incluye:'
+                          product:
+                            - price: 10
+                              name: Cyber Shield
+                            - price: 15
+                              name: Premium Modem (Lease)
+                            - price: 7
+                              name: Personal TechPro
+                            - price: 50
+                              name: 'Package: Simply Unlimited Internet'
+                            - price: 40
+                              name: 'Package: Simply Unlimited Phone'
+                          taxes:
+                            taxesList:
+                              - price: 1.2
+                                name: City 911 Tax
+                              - price: 0.09
+                                name: State 911 Tax
+                              - price: 0.18
+                                name: State 988 Health Crisis and Suicide Prevention Fee
+                              - price: 0.06
+                                name: State Telecommunications Relay Service Surcharge
+                              - price: 0.82
+                                name: COLORADO Universal Service Fund Surcharge
+                              - price: 2.15
+                                name: Federal Universal Service Fund Surcharge
+                              - price: 0.5
+                                name: Facility Relocation Cost Recovery Fee
+                              - price: 0.14
+                                name: ARAPAHOE Sales Tax
+                              - price: 2.08
+                                name: AURORA Sales Tax
+                              - price: 1.6
+                                name: COLORADO Sales Tax
+                              - price: 0.06
+                                name: District Sales Tax
+                              - price: 1.14
+                                name: Federal Excise Tax
+                        oneTimeCharges:
+                          description: 'Cargos únicos:  Los cargos únicos son $0.00.  Estos cargos se verán reflejados en su primera factura.  Esto incluye:'
+                          productList:
+                            - price: 99
+                              name: Tech Installation
+                            - price: -99
+                              name: Online Tech Install Waiver MAR 30 MAR 30
+                        proratedChargesMonthlyBilling:
+                          description: 'Prorrateo:  Le facturaremos por los servicios con un mes de anticipación. En su primera factura, usted podría ver los cargos prorrateados por servicios y los impuestos, tarifas y sobrecargos desde la fecha en que empiece el servicio hasta su próximo ciclo de facturación, más un mes completo de cargos. Debido a esto, su primera factura será más alta que otras facturas en el futuro.'
+                          firstMonthBill: '1ra factura: El monto de su primera factura será $188.62, más cualquier cargo prorrateado según lo descrito antes.  Los impuestos no están incluidos en este monto.'
+                          secondMonthBill: '2da factura: El monto de su segunda factura será $132.02, lo cual incluye su precio mensual por el servicio y cualquier tarifa y sobrecargo aplicable, pero excluye impuestos.'
+                        paperlessBilling:
+                          description: 'Facturación sin papel:  Si selecciona una oferta que requiera pago automático o facturación sin papel, debe mantener el pago automático o la facturación sin papel para recibir los descuentos aplicables.  Si aún no se ha registrado en el pago automático y la facturación sin papel, lo animamos a registrarse en estos servicios para para asegurarse de recibir su factura en la forma más eficiente posible.  Si le gustaría configurarlo, puede registrarse en línea en CenturyLink.com después de que sus servicios hayan sido instalados.'
+                        termText:
+                          termAgreementDesc: 'Duración del contrato:  No hay un compromiso de tiempo con su paquete.  Acuerdo de servicio: Los servicios de CenturyLink están sujetos a acuerdos de servicios como condición para recibir dichos servicios y el equipo relacionado. Puede verlos en línea en www.centurylink.com/terms.  Los términos clave incluyen límites y requisitos de mediación bajo la responsabilidad de CenturyLink.  El servicio mensual y las tarifas y cuotas por equipo pueden aumentar y no están garantizados, a menos que sean parte de una tarifa promocional, Price for Life o un compromiso de tiempo definido.'
+                          equipDesc: 'Equipo:  Acuerdo de arrendamiento: Su módem es arrendado. Si usted cancela su servicio, la política de devoluciones de CenturyLink requiere que devuelva todo el equipo arrendado a más tardar 30 días después de que el servicio sea cancelado para evitar las tarifas de $ 150.00 por no devolver el módem. Una política de devolución e instrucciones serán incluidas con su equipo.'
+                          serviceDesc: |-
+                            Si se requieren cargos adicionales para la instalación de su servicio, le notificaremos y pediremos su aprobación para dichos cargos antes de conectar el servicio.
+
+                            Este mensaje es propiedad de CenturyLink y puede contener información confidencial o privilegiada. El uso no autorizado de este mensaje está estrictamente prohibido y podría ser ilegal. Si recibió este mensaje por error, por favor notifique al remitente inmediatamente respondiendo al correo electrónico y destruya todas las copias del mensaje y cualquier archivo adjunto.
+                        confirmationText:
+                          description: 'Cartas de confirmación:  Cuando se acerque la fecha en que sus servicios se vuelvan disponibles, usted recibirá una carta de confirmación por medio del correo postal de los Estados Unidos o a la dirección de correo electrónico que nos ha proporcionado.  La carta enumerará los servicios que ha seleccionado hoy, sus cargos mensuales esperados por dichos servicios y alguna información adicional.'
+                        installationText:
+                          description: 'Expectativas de instalación:  Reserve de 2 a 6 horas para la configuración. Un adulto de más de 18 años debe estar presente durante la instalación.  La meta de CenturyLink es hacer que la visita a su hogar sea lo más segura y eficiente posible.  Por favor, asegúrese que nuestro técnico tenga acceso libre y rápido adentro y afuera de su hogar, un camino libre hacia la conexión y hacia el tomacorriente en donde le gustaría que sea colocado el módem.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rccRequest:
+                  type: object
+                  properties:
+                    addressDetailId:
+                      type: string
+                    partnerId:
+                      type: string
+                    partnerOrderId:
+                      type: string
+                    salesCode:
+                      type: string
+                    transactionId:
+                      type: string
+              x-examples:
+                example-1:
+                  rccRequest:
+                    addressDetailId: AURORA CO 6684 S KELLERMAN WAY 80016
+                    partnerId: PX000125
+                    partnerOrderId: Tim_API_Test1_03_24_22_1
+                    salesCode: '9999494'
+                    transactionId: 1648122834765bbe
+            examples:
+              getRccRequest:
+                value:
+                  rccRequest:
+                    addressDetailId: AURORA CO 6684 S KELLERMAN WAY 80016
+                    partnerId: PX000125
+                    partnerOrderId: Tim_API_Test1_03_24_22_1
+                    salesCode: '9999494'
+                    transactionId: 1648122834765bbe
+        description: Post the necessary fields for the API to create a new user.
+      description: "Partner will send the following details in the Get RCC API request.  \n1.\tPartner authorization details\nPx will then the return the appropriate RCC text to be formatted for the partner agent to read out to the customer.\n"
+    parameters: []
+components:
+  schemas:
+    GetRCC:
+      type: object
+      properties:
+        rccRequest:
+          type: object
+          properties:
+            addressDetailId:
+              type: string
+            partnerId:
+              type: string
+            partnerOrderId:
+              type: string
+            salesCode:
+              type: string
+            transactionId:
+              type: string
+      x-examples:
+        example-1:
+          rccRequest:
+            addressDetailId: AURORA CO 6684 S KELLERMAN WAY 80016
+            partnerId: PX000125
+            partnerOrderId: Tim_API_Test1_03_24_22_1
+            salesCode: '9999494'
+            transactionId: 1648122834765bbe
+      examples:
+        - rccRequest:
+            addressDetailId: AURORA CO 6684 S KELLERMAN WAY 80016
+            partnerId: PX000125
+            partnerOrderId: Tim_API_Test1_03_24_22_1
+            salesCode: '9999494'
+            transactionId: 1648122834765bbe
+      description: ''
