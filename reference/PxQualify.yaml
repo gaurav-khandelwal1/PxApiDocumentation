@@ -67,8 +67,8 @@ paths:
                   dateOfBirth: '1985-10-02'
         description: Patch user properties to update.
     post:
-      summary: ''
-      operationId: post-users-userId
+      summary: Qualify API
+      operationId: pxQualify
       responses:
         '200':
           description: OK
