@@ -1,0 +1,145 @@
+openapi: 3.1.0
+x-stoplight:
+  id: nn7jvrh1ovv8q
+info:
+  title: PxCreateToken
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /HCDEUI/Internal/rest/token/createToken:
+    post:
+      summary: Create New User
+      operationId: post-createToken
+      responses:
+        '200':
+          description: User Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                New User Bob Fellow:
+                  value:
+                    id: 12
+                    firstName: Bob
+                    lastName: Fellow
+                    email: bob.fellow@gmail.com
+                    dateOfBirth: '1996-08-24'
+                    emailVerified: false
+                    createDate: '2020-11-18'
+        '400':
+          description: Missing Required Information
+        '409':
+          description: Email Already Taken
+        '':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transactionId:
+                    type: string
+                  status:
+                    type: string
+                  message:
+                    type: 'null'
+                  token:
+                    type: string
+                x-examples:
+                  example-1:
+                    transactionId: '546398'
+                    status: SUCCESS
+                    message: null
+                    token: '5881095981361128'
+              examples:
+                createTokenResponse:
+                  value:
+                    transactionId: '546398'
+                    status: SUCCESS
+                    message: null
+                    token: '5881095981361128'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                srcSysTransId:
+                  type: string
+                cardNumber:
+                  type: string
+                cardExpiryMonth:
+                  type: string
+                cardExpiryYear:
+                  type: string
+                zipCode:
+                  type: string
+                tokenType:
+                  type: string
+                clientId:
+                  type: string
+              x-examples:
+                example-1:
+                  srcSysTransId: '{{transactionId}}'
+                  cardNumber: '5111005111051128'
+                  cardExpiryMonth: '12'
+                  cardExpiryYear: '2022'
+                  zipCode: '27540'
+                  tokenType: CTL
+                  clientId: PPO_PX
+            examples:
+              createToken:
+                value:
+                  srcSysTransId: '{{transactionId}}'
+                  cardNumber: '5111005111051128'
+                  cardExpiryMonth: '12'
+                  cardExpiryYear: '2022'
+                  zipCode: '27540'
+                  tokenType: CTL
+                  clientId: PPO_PX
+        description: Post the necessary fields for the API to create a new user.
+      description: "Partner will call this service for all Prepaid orders, and any Postpaid orders that require a deposit due to poor customer credit.  The CreateToken API receives the customer payment card details and returns a payment token that must be passed into the subsequent Prepare API request. \nThe CreateToken API executes in a secure payments infrastructure. The scope of this API is to securely convert the highly sensitive customer payment card details PCI into a token that can be safely manipulated by non-PCI systems.\nPartner will send the JSON payload  data as request, defined in API Attributes section below.\nCenturyLink payments infrastructure will securely tokenize the card details provided in the request and return the card token to be sent with the subsequent Prepare API.\nNote: this API simply converts the card details into a token for safe use further. This API does NOT authorize any Payment against the customer card. The card will be charged at the time the order is submitted.\nThe CreateToken API requires 2 security mechanisms:\n1.\t2-way TLS at the transport layer. CenturyLink will provide each Partner with a digital certificate to be installed in their application server that calls the CenturyLink APIs. This certificate verifies the identity of the Partner server application to CenturyLink\n2.\tIP Whitelisting. Partner will provide IP addresses of servers that will call the CreateToken API and those will be allowed access through the CenturyLink firewall.\nNote: IP Whitelisting in production is under development right now. And, IP whitelisting will not be required in TEST environments.\nPartners allowed access to this API must be PCI-compliant. Partners will submit their up-to-date Attestation of Compliance (AOC) documentation to CenturyLink for review and acceptance. Once this process is complete, the 2-way TLS cert will be generated and delivered to the Partner and IP Address(es) will be whitelisted.\nCreate a new user."
+    parameters: []
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      description: ''
+      examples:
+        - id: 142
+          firstName: Alice
+          lastName: Smith
+          email: alice.smith@gmail.com
+          dateOfBirth: '1997-10-31'
+          emailVerified: true
+          signUpDate: '2019-08-24'
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the given user.
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        dateOfBirth:
+          type: string
+          format: date
+          example: '1997-10-31'
+        emailVerified:
+          type: boolean
+          description: Set to true if the user's email has been verified.
+        createDate:
+          type: string
+          format: date
+          description: The date that the user was created.
+      required:
+        - id
+        - firstName
+        - lastName
+        - email
+        - emailVerified
