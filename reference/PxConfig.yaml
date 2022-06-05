@@ -1,0 +1,822 @@
+openapi: 3.1.0
+x-stoplight:
+  id: lf767wbmiy6hn
+info:
+  title: PxConfig
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /Partner/v1/Ordering/pxConfigure:
+    post:
+      summary: Create New User
+      operationId: post-user
+      responses:
+        '200':
+          description: User Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                New User Bob Fellow:
+                  value:
+                    id: 12
+                    firstName: Bob
+                    lastName: Fellow
+                    email: bob.fellow@gmail.com
+                    dateOfBirth: '1996-08-24'
+                    emailVerified: false
+                    createDate: '2020-11-18'
+        '400':
+          description: Missing Required Information
+        '409':
+          description: Email Already Taken
+        '':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messageStatus:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        statusCode:
+                          type: string
+                        internalStatusCode:
+                          type: string
+                        statusMessage:
+                          type: string
+                        timestamp:
+                          type: string
+                  createConfigureResponse:
+                    type: object
+                    properties:
+                      transactionId:
+                        type: string
+                      portCarriers:
+                        type: string
+                      creditResponse:
+                        type: object
+                        properties:
+                          paymentType:
+                            type: string
+                          paymentAccountKey:
+                            type: string
+                          advancePayment:
+                            type: integer
+                          deposit:
+                            type: integer
+                          totalPayment:
+                            type: integer
+                      product:
+                        type: object
+                        properties:
+                          productCode:
+                            type: string
+                          promoCode:
+                            type: string
+                          productName:
+                            type: string
+                          productGroups:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                productCode:
+                                  type: string
+                                productDescription:
+                                  type: string
+                                productName:
+                                  type: string
+                                childProducts:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      priceResult:
+                                        type: array
+                                        items:
+                                          type: object
+                                          properties:
+                                            adjustments:
+                                              type: array
+                                              items:
+                                                type: object
+                                                properties: {}
+                                            promoCharge:
+                                              type: integer
+                                            productCharge:
+                                              type: integer
+                                            chargeType:
+                                              type: string
+                                            chargeText:
+                                              type: string
+                                      productCode:
+                                        type: string
+                                      productDescription:
+                                        type: string
+                                      productName:
+                                        type: string
+                                      childProducts:
+                                        type: array
+                                        items:
+                                          type: object
+                                          properties:
+                                            priceResult:
+                                              type: array
+                                              items:
+                                                type: object
+                                                properties:
+                                                  adjustments:
+                                                    type: array
+                                                    items:
+                                                      type: object
+                                                      properties: {}
+                                                  promoCharge:
+                                                    type: integer
+                                                  productCharge:
+                                                    type: integer
+                                                  chargeType:
+                                                    type: string
+                                                  chargeText:
+                                                    type: string
+                                            productCode:
+                                              type: string
+                                            productDescription:
+                                              type: string
+                                            productName:
+                                              type: string
+                                      attributeCategory:
+                                        type: object
+                                        properties:
+                                          records:
+                                            type: array
+                                            items:
+                                              type: object
+                                              properties:
+                                                productAttributes:
+                                                  type: object
+                                                  properties:
+                                                    records:
+                                                      type: array
+                                                      items:
+                                                        type: object
+                                                        properties:
+                                                          code:
+                                                            type: string
+                                                          label:
+                                                            type: string
+                                                          displaySequence:
+                                                            type: integer
+                                                          userValues:
+                                                            type: array
+                                                            items:
+                                                              type: string
+                                                    name:
+                                                      type: string
+                                                    displaySequence:
+                                                      type: integer
+                          offerType:
+                            type: string
+                x-examples:
+                  example-1:
+                    messageStatus:
+                      - statusCode: '200'
+                        internalStatusCode: ''
+                        statusMessage: ''
+                        timestamp: '2022-03-24 07:03:19'
+                    createConfigureResponse:
+                      transactionId: 1648122834765bbe
+                      portCarriers: ''
+                      creditResponse:
+                        paymentType: CTL
+                        paymentAccountKey: ''
+                        advancePayment: 0
+                        deposit: 0
+                        totalPayment: 0
+                      product:
+                        productCode: PX_VCE_LD_HSI_140M20M_POSTPAY
+                        promoCode: PX_VCE_LD_HSI_140M20M_POSTPAY_DIS
+                        productName: CenturyLink Internet up to 140 Mbps and Phone
+                        productGroups:
+                          - productCode: CTL_PARTNER_OFFERING_INTERNET_MODEM_STANDARD
+                            productDescription: Modem
+                            productName: Modem
+                            childProducts:
+                              - priceResult:
+                                  - adjustments: []
+                                    promoCharge: 15
+                                    productCharge: 15
+                                    chargeType: Recurring
+                                    chargeText: Monthly Fee
+                                productCode: PX_MDM_LEASE_PREM
+                                productDescription: 'All in one, Dual Band WiFi Modem with 4 port Ethernet connection. No cost replacement if modem becomes defective. Protected Internet is security built into the modem to protect your network and the connected devices from most online threats.'
+                                productName: Premium Modem Lease
+                                childProducts:
+                                  - priceResult:
+                                      - adjustments: []
+                                        promoCharge: 0
+                                        productCharge: 0
+                                        chargeType: One-time
+                                        chargeText: One Time Std Price
+                                    productCode: CTL_PARTNER_OFFERING_SHIPPING
+                                    productDescription: Shipping
+                                    productName: Shipping
+                                attributeCategory:
+                                  records:
+                                    - productAttributes:
+                                        records:
+                                          - code: CTL_PARTNER_ATTR_COMPENSATION_CODE
+                                            label: Compensation Code
+                                            displaySequence: 20
+                                            userValues: []
+                                          - code: CTL_PARTNER_ATTR_OFFER_DURATION
+                                            label: Offer Duration
+                                            displaySequence: 55
+                                            userValues: []
+                                          - code: CTL_PARTNER_ATTR_SPECIAL_OFFER_DISCLOSURE
+                                            label: Special Offer Disclosure
+                                            displaySequence: 70
+                                            userValues: []
+                                        name: Generic Details
+                                        displaySequence: 7020
+                              - priceResult:
+                                  - adjustments: []
+                                    promoCharge: 200
+                                    productCharge: 200
+                                    chargeType: One-time
+                                    chargeText: one-time fee
+                                productCode: PX_MDM_PURCHASE_PREM
+                                productDescription: 'All in one, Dual Band WiFi Modem with 4 port Ethernet connection. 1 year manufacturer’s warranty. Protected Internet is security built into the modem to protect your network and the connected devices from most online threats.'
+                                productName: Premium Modem Purchase
+                                childProducts:
+                                  - priceResult:
+                                      - adjustments: []
+                                        promoCharge: 0
+                                        productCharge: 0
+                                        chargeType: One-time
+                                        chargeText: One Time Std Price
+                                    productCode: CTL_PARTNER_OFFERING_SHIPPING
+                                    productDescription: Shipping
+                                    productName: Shipping
+                                attributeCategory:
+                                  records:
+                                    - productAttributes:
+                                        records:
+                                          - code: CTL_PARTNER_ATTR_COMPENSATION_CODE
+                                            label: Compensation Code
+                                            displaySequence: 20
+                                            userValues: []
+                                          - code: CTL_PARTNER_ATTR_OFFER_DURATION
+                                            label: Offer Duration
+                                            displaySequence: 55
+                                            userValues: []
+                                          - code: CTL_PARTNER_ATTR_SPECIAL_OFFER_DISCLOSURE
+                                            label: Special Offer Disclosure
+                                            displaySequence: 70
+                                            userValues: []
+                                        name: Generic Details
+                                        displaySequence: 7020
+                          - productCode: CTL_PARTNER_OFFERING_INSTALLATION_FREE
+                            productDescription: Installation with free options only
+                            productName: Installation
+                            childProducts:
+                              - priceResult:
+                                  - adjustments: []
+                                    promoCharge: 0
+                                    productCharge: 0
+                                    chargeType: One-time
+                                    chargeText: One-time fee
+                                productCode: PX_SVC_TECHINST_FREE
+                                productDescription: A CenturyLink technician comes to your home to install and configure your devices.
+                                productName: Tech Installation - FREE
+                                childProducts: []
+                                attributeCategory:
+                                  records:
+                                    - productAttributes:
+                                        records:
+                                          - code: CTL_PARTNER_ATTR_DEVICE_QUANTITY
+                                            label: Device Quantity
+                                            displaySequence: 1
+                                            userValues:
+                                              - '1'
+                                              - '2'
+                                        name: Installation Details
+                                        displaySequence: 650
+                                    - productAttributes:
+                                        records:
+                                          - code: CTL_PARTNER_ATTR_OFFER_DURATION
+                                            label: Offer Duration
+                                            displaySequence: 55
+                                            userValues: []
+                                          - code: CTL_PARTNER_ATTR_SPECIAL_OFFER_DISCLOSURE
+                                            label: Special Offer Disclosure
+                                            displaySequence: 70
+                                            userValues: []
+                                        name: Generic Details
+                                        displaySequence: 7020
+                          - productCode: CTL_PARTNER_OFFERING_ADDONS_STANDARD
+                            productDescription: ''
+                            productName: Add Ons
+                            childProducts:
+                              - priceResult:
+                                  - adjustments: []
+                                    promoCharge: 7
+                                    productCharge: 7
+                                    chargeType: Recurring
+                                    chargeText: Recurring Monthly Std Price
+                                productCode: PX_TECH_PRO
+                                productDescription: 'Unlimited technical support for all your connected devices. Now it''s easier to work from home. Learn from home. And live a simpler, smarter connected life.'
+                                productName: Personal TechPro
+                                childProducts: []
+                                attributeCategory:
+                                  records:
+                                    - productAttributes:
+                                        records:
+                                          - code: CTL_PARTNER_ATTR_COMPENSATION_CODE
+                                            label: Compensation Code
+                                            displaySequence: 20
+                                            userValues:
+                                              - PTP
+                                          - code: CTL_PARTNER_ATTR_SPECIAL_OFFER_DISCLOSURE
+                                            label: Special Offer Disclosure
+                                            displaySequence: 70
+                                            userValues: []
+                                        name: Generic Details
+                                        displaySequence: 7020
+                              - priceResult:
+                                  - adjustments: []
+                                    promoCharge: 10
+                                    productCharge: 10
+                                    chargeType: Recurring
+                                    chargeText: Recurring Monthly Std Price
+                                productCode: PX_CYBER_SHIELD
+                                productDescription: Cyber Shield content
+                                productName: Cyber Shield
+                                childProducts: []
+                                attributeCategory:
+                                  records:
+                                    - productAttributes:
+                                        records:
+                                          - code: CTL_PARTNER_ATTR_COMPENSATION_CODE
+                                            label: Compensation Code
+                                            displaySequence: 20
+                                            userValues:
+                                              - CYS
+                                          - code: CTL_PARTNER_ATTR_SPECIAL_OFFER_DISCLOSURE
+                                            label: Special Offer Disclosure
+                                            displaySequence: 70
+                                            userValues: []
+                                        name: Generic Details
+                                        displaySequence: 7020
+                        offerType: Promotion
+              examples:
+                ConfigResponse:
+                  value:
+                    messageStatus:
+                      - statusCode: '200'
+                        internalStatusCode: ''
+                        statusMessage: ''
+                        timestamp: '2022-03-24 07:03:19'
+                    createConfigureResponse:
+                      transactionId: 1648122834765bbe
+                      portCarriers: ''
+                      creditResponse:
+                        paymentType: CTL
+                        paymentAccountKey: ''
+                        advancePayment: 0
+                        deposit: 0
+                        totalPayment: 0
+                      product:
+                        productCode: PX_VCE_LD_HSI_140M20M_POSTPAY
+                        promoCode: PX_VCE_LD_HSI_140M20M_POSTPAY_DIS
+                        productName: CenturyLink Internet up to 140 Mbps and Phone
+                        productGroups:
+                          - productCode: CTL_PARTNER_OFFERING_INTERNET_MODEM_STANDARD
+                            productDescription: Modem
+                            productName: Modem
+                            childProducts:
+                              - priceResult:
+                                  - adjustments: []
+                                    promoCharge: 15
+                                    productCharge: 15
+                                    chargeType: Recurring
+                                    chargeText: Monthly Fee
+                                productCode: PX_MDM_LEASE_PREM
+                                productDescription: 'All in one, Dual Band WiFi Modem with 4 port Ethernet connection. No cost replacement if modem becomes defective. Protected Internet is security built into the modem to protect your network and the connected devices from most online threats.'
+                                productName: Premium Modem Lease
+                                childProducts:
+                                  - priceResult:
+                                      - adjustments: []
+                                        promoCharge: 0
+                                        productCharge: 0
+                                        chargeType: One-time
+                                        chargeText: One Time Std Price
+                                    productCode: CTL_PARTNER_OFFERING_SHIPPING
+                                    productDescription: Shipping
+                                    productName: Shipping
+                                attributeCategory:
+                                  records:
+                                    - productAttributes:
+                                        records:
+                                          - code: CTL_PARTNER_ATTR_COMPENSATION_CODE
+                                            label: Compensation Code
+                                            displaySequence: 20
+                                            userValues: []
+                                          - code: CTL_PARTNER_ATTR_OFFER_DURATION
+                                            label: Offer Duration
+                                            displaySequence: 55
+                                            userValues: []
+                                          - code: CTL_PARTNER_ATTR_SPECIAL_OFFER_DISCLOSURE
+                                            label: Special Offer Disclosure
+                                            displaySequence: 70
+                                            userValues: []
+                                        name: Generic Details
+                                        displaySequence: 7020
+                              - priceResult:
+                                  - adjustments: []
+                                    promoCharge: 200
+                                    productCharge: 200
+                                    chargeType: One-time
+                                    chargeText: one-time fee
+                                productCode: PX_MDM_PURCHASE_PREM
+                                productDescription: 'All in one, Dual Band WiFi Modem with 4 port Ethernet connection. 1 year manufacturer’s warranty. Protected Internet is security built into the modem to protect your network and the connected devices from most online threats.'
+                                productName: Premium Modem Purchase
+                                childProducts:
+                                  - priceResult:
+                                      - adjustments: []
+                                        promoCharge: 0
+                                        productCharge: 0
+                                        chargeType: One-time
+                                        chargeText: One Time Std Price
+                                    productCode: CTL_PARTNER_OFFERING_SHIPPING
+                                    productDescription: Shipping
+                                    productName: Shipping
+                                attributeCategory:
+                                  records:
+                                    - productAttributes:
+                                        records:
+                                          - code: CTL_PARTNER_ATTR_COMPENSATION_CODE
+                                            label: Compensation Code
+                                            displaySequence: 20
+                                            userValues: []
+                                          - code: CTL_PARTNER_ATTR_OFFER_DURATION
+                                            label: Offer Duration
+                                            displaySequence: 55
+                                            userValues: []
+                                          - code: CTL_PARTNER_ATTR_SPECIAL_OFFER_DISCLOSURE
+                                            label: Special Offer Disclosure
+                                            displaySequence: 70
+                                            userValues: []
+                                        name: Generic Details
+                                        displaySequence: 7020
+                          - productCode: CTL_PARTNER_OFFERING_INSTALLATION_FREE
+                            productDescription: Installation with free options only
+                            productName: Installation
+                            childProducts:
+                              - priceResult:
+                                  - adjustments: []
+                                    promoCharge: 0
+                                    productCharge: 0
+                                    chargeType: One-time
+                                    chargeText: One-time fee
+                                productCode: PX_SVC_TECHINST_FREE
+                                productDescription: A CenturyLink technician comes to your home to install and configure your devices.
+                                productName: Tech Installation - FREE
+                                childProducts: []
+                                attributeCategory:
+                                  records:
+                                    - productAttributes:
+                                        records:
+                                          - code: CTL_PARTNER_ATTR_DEVICE_QUANTITY
+                                            label: Device Quantity
+                                            displaySequence: 1
+                                            userValues:
+                                              - '1'
+                                              - '2'
+                                        name: Installation Details
+                                        displaySequence: 650
+                                    - productAttributes:
+                                        records:
+                                          - code: CTL_PARTNER_ATTR_OFFER_DURATION
+                                            label: Offer Duration
+                                            displaySequence: 55
+                                            userValues: []
+                                          - code: CTL_PARTNER_ATTR_SPECIAL_OFFER_DISCLOSURE
+                                            label: Special Offer Disclosure
+                                            displaySequence: 70
+                                            userValues: []
+                                        name: Generic Details
+                                        displaySequence: 7020
+                          - productCode: CTL_PARTNER_OFFERING_ADDONS_STANDARD
+                            productDescription: ''
+                            productName: Add Ons
+                            childProducts:
+                              - priceResult:
+                                  - adjustments: []
+                                    promoCharge: 7
+                                    productCharge: 7
+                                    chargeType: Recurring
+                                    chargeText: Recurring Monthly Std Price
+                                productCode: PX_TECH_PRO
+                                productDescription: 'Unlimited technical support for all your connected devices. Now it''s easier to work from home. Learn from home. And live a simpler, smarter connected life.'
+                                productName: Personal TechPro
+                                childProducts: []
+                                attributeCategory:
+                                  records:
+                                    - productAttributes:
+                                        records:
+                                          - code: CTL_PARTNER_ATTR_COMPENSATION_CODE
+                                            label: Compensation Code
+                                            displaySequence: 20
+                                            userValues:
+                                              - PTP
+                                          - code: CTL_PARTNER_ATTR_SPECIAL_OFFER_DISCLOSURE
+                                            label: Special Offer Disclosure
+                                            displaySequence: 70
+                                            userValues: []
+                                        name: Generic Details
+                                        displaySequence: 7020
+                              - priceResult:
+                                  - adjustments: []
+                                    promoCharge: 10
+                                    productCharge: 10
+                                    chargeType: Recurring
+                                    chargeText: Recurring Monthly Std Price
+                                productCode: PX_CYBER_SHIELD
+                                productDescription: Cyber Shield content
+                                productName: Cyber Shield
+                                childProducts: []
+                                attributeCategory:
+                                  records:
+                                    - productAttributes:
+                                        records:
+                                          - code: CTL_PARTNER_ATTR_COMPENSATION_CODE
+                                            label: Compensation Code
+                                            displaySequence: 20
+                                            userValues:
+                                              - CYS
+                                          - code: CTL_PARTNER_ATTR_SPECIAL_OFFER_DISCLOSURE
+                                            label: Special Offer Disclosure
+                                            displaySequence: 70
+                                            userValues: []
+                                        name: Generic Details
+                                        displaySequence: 7020
+                        offerType: Promotion
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                configCTLProducts:
+                  type: object
+                  properties:
+                    configCTLProductsRequest:
+                      type: object
+                      properties:
+                        transactionId:
+                          type: string
+                        partnerId:
+                          type: string
+                        salesCode:
+                          type: string
+                        partnerOrderId:
+                          type: string
+                        addressDetailId:
+                          type: string
+                        configType:
+                          type: string
+                        promoCode:
+                          type: string
+                        productCode:
+                          type: string
+                        billingType:
+                          type: string
+                        interestedInSelfInstallOrTechInstall:
+                          type: string
+                        supplementalCustomerInfo:
+                          type: object
+                          properties:
+                            accountFirstName:
+                              type: string
+                            accountLastName:
+                              type: string
+                            ssn:
+                              type: string
+                            dob:
+                              type: string
+                            personalId:
+                              type: 'null'
+                            personalIdState:
+                              type: 'null'
+                            cellPhone:
+                              type: string
+                            taxId:
+                              type: 'null'
+                            businessType:
+                              type: 'null'
+                            previousAddress:
+                              type: object
+                              properties:
+                                streetAddress:
+                                  type: string
+                                unitValue:
+                                  type: 'null'
+                                city:
+                                  type: string
+                                stateCode:
+                                  type: string
+                                zipCode:
+                                  type: string
+              x-examples:
+                example-1:
+                  configCTLProducts:
+                    configCTLProductsRequest:
+                      transactionId: 1648122834765bbe
+                      partnerId: PX000125
+                      salesCode: '9999494'
+                      partnerOrderId: Tim_API_Test1_03_24_22_1
+                      addressDetailId: AURORA CO 6684 S KELLERMAN WAY 80016
+                      configType: config
+                      promoCode: PX_VCE_LD_HSI_140M20M_POSTPAY_DIS
+                      productCode: PX_VCE_LD_HSI_140M20M_POSTPAY
+                      billingType: Postpaid
+                      interestedInSelfInstallOrTechInstall: tech
+                      supplementalCustomerInfo:
+                        accountFirstName: Sammy
+                        accountLastName: Hagger
+                        ssn: '666192240'
+                        dob: 03/19/1950
+                        personalId: null
+                        personalIdState: null
+                        cellPhone: ''
+                        taxId: null
+                        businessType: null
+                        previousAddress:
+                          streetAddress: ''
+                          unitValue: null
+                          city: ''
+                          stateCode: ''
+                          zipCode: ''
+            examples:
+              ConfigRequest:
+                value:
+                  configCTLProducts:
+                    configCTLProductsRequest:
+                      transactionId: 1648122834765bbe
+                      partnerId: PX000125
+                      salesCode: '9999494'
+                      partnerOrderId: Tim_API_Test1_03_24_22_1
+                      addressDetailId: AURORA CO 6684 S KELLERMAN WAY 80016
+                      configType: config
+                      promoCode: PX_VCE_LD_HSI_140M20M_POSTPAY_DIS
+                      productCode: PX_VCE_LD_HSI_140M20M_POSTPAY
+                      billingType: Postpaid
+                      interestedInSelfInstallOrTechInstall: tech
+                      supplementalCustomerInfo:
+                        accountFirstName: Sammy
+                        accountLastName: Hagger
+                        ssn: '666192240'
+                        dob: 03/19/1950
+                        personalId: null
+                        personalIdState: null
+                        cellPhone: ''
+                        taxId: null
+                        businessType: null
+                        previousAddress:
+                          streetAddress: ''
+                          unitValue: null
+                          city: ''
+                          stateCode: ''
+                          zipCode: ''
+        description: Post the necessary fields for the API to create a new user.
+      description: Create a new user.
+    parameters: []
+components:
+  schemas:
+    Config:
+      type: object
+      properties:
+        configCTLProducts:
+          type: object
+          properties:
+            configCTLProductsRequest:
+              type: object
+              properties:
+                transactionId:
+                  type: string
+                partnerId:
+                  type: string
+                salesCode:
+                  type: string
+                partnerOrderId:
+                  type: string
+                addressDetailId:
+                  type: string
+                configType:
+                  type: string
+                promoCode:
+                  type: string
+                productCode:
+                  type: string
+                billingType:
+                  type: string
+                interestedInSelfInstallOrTechInstall:
+                  type: string
+                supplementalCustomerInfo:
+                  type: object
+                  properties:
+                    accountFirstName:
+                      type: string
+                    accountLastName:
+                      type: string
+                    ssn:
+                      type: string
+                    dob:
+                      type: string
+                    personalId:
+                      type: 'null'
+                    personalIdState:
+                      type: 'null'
+                    cellPhone:
+                      type: string
+                    taxId:
+                      type: 'null'
+                    businessType:
+                      type: 'null'
+                    previousAddress:
+                      type: object
+                      properties:
+                        streetAddress:
+                          type: string
+                        unitValue:
+                          type: 'null'
+                        city:
+                          type: string
+                        stateCode:
+                          type: string
+                        zipCode:
+                          type: string
+      x-examples:
+        example-1:
+          configCTLProducts:
+            configCTLProductsRequest:
+              transactionId: 1648122834765bbe
+              partnerId: PX000125
+              salesCode: '9999494'
+              partnerOrderId: Tim_API_Test1_03_24_22_1
+              addressDetailId: AURORA CO 6684 S KELLERMAN WAY 80016
+              configType: config
+              promoCode: PX_VCE_LD_HSI_140M20M_POSTPAY_DIS
+              productCode: PX_VCE_LD_HSI_140M20M_POSTPAY
+              billingType: Postpaid
+              interestedInSelfInstallOrTechInstall: tech
+              supplementalCustomerInfo:
+                accountFirstName: Sammy
+                accountLastName: Hagger
+                ssn: '666192240'
+                dob: 03/19/1950
+                personalId: null
+                personalIdState: null
+                cellPhone: ''
+                taxId: null
+                businessType: null
+                previousAddress:
+                  streetAddress: ''
+                  unitValue: null
+                  city: ''
+                  stateCode: ''
+                  zipCode: ''
+      examples:
+        - configCTLProducts:
+            configCTLProductsRequest:
+              transactionId: 1648122834765bbe
+              partnerId: PX000125
+              salesCode: '9999494'
+              partnerOrderId: Tim_API_Test1_03_24_22_1
+              addressDetailId: AURORA CO 6684 S KELLERMAN WAY 80016
+              configType: config
+              promoCode: PX_VCE_LD_HSI_140M20M_POSTPAY_DIS
+              productCode: PX_VCE_LD_HSI_140M20M_POSTPAY
+              billingType: Postpaid
+              interestedInSelfInstallOrTechInstall: tech
+              supplementalCustomerInfo:
+                accountFirstName: Sammy
+                accountLastName: Hagger
+                ssn: '666192240'
+                dob: 03/19/1950
+                personalId: null
+                personalIdState: null
+                cellPhone: ''
+                taxId: null
+                businessType: null
+                previousAddress:
+                  streetAddress: ''
+                  unitValue: null
+                  city: ''
+                  stateCode: ''
+                  zipCode: ''
