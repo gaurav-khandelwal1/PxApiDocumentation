@@ -9,8 +9,8 @@ servers:
 paths:
   /Partner/v1/Ordering/pxConfigure:
     post:
-      summary: Create New User
-      operationId: post-user
+      summary: Config Api
+      operationId: post-config
       responses:
         '200':
           description: User Created
@@ -694,7 +694,7 @@ paths:
                           stateCode: ''
                           zipCode: ''
         description: Post the necessary fields for the API to create a new user.
-      description: Create a new user.
+      description: "Partner will call this service after selecting a product returned in the Qualify API response and send \n1.\tPartner authorization details like TransactionId, Salescode, PartnerId, PartnerOrderId\n2.\tSelected product\n3.\tCustomer details\n4.\tConfig type\nThe API will return any one of the following based on the selections made\n1.\tAdd-ons for the selected product like Tech Install options, \na.\tTech Installation if TECH is chosen as option\nb.\tTech Installation if the speed qualifies for installation services\nc.\tSelf-Installation if SELF is chosen as option\ni.\tIn this option Shipping & Handling charges are added to the selected modem\n2.\tAdd-ons for the selected product like Modem options\na.\tModem purchase\nb.\tModem lease\nc.\tI have my own modem\ni.\tThis option cannot be chosen if Technical Installation is required\n3.\tDeposit to be paid in case of Postpaid and based on the credit output\n4.\tCredit issue - Hard stop\n5.\tFinal Bill outstanding – Hard stop\nBesides following Config / Reconfig logic will be implemented to ensure customer credit is not run multiple times. \nConfigType=Config type: logic\n1.\tTransaction Id, that is returned in Qualify API response, is sent by the partner\n2.\tCustomer information will be sent in the API request\n3.\tBased on the billtype of the product selected, if billtype=prepaid authentication is required, must send DOB and all “9”s in SSN field (i.e. 999 99 9999).\na.\tBased on the authentication check, an error or zero deposit will be returned.\n4.\tIf billtype=postpaid then\na.\tSSN and DOB are required\nb.\tIf customer refuses or does not have SSN, must send all “9”s in SSN field (i.e. 999 99 9999)\nc.\tBased on the credit result send an error message or a deposit amount.\nConfigType=Reconfig: logic\n1.\tCredit check will not be run in Reconfig and hence no customer information is provided\n2.\tSame transaction Id with ConfigType=Reconfig and customer information is provided in the request, then Px shall send an error message\n3.\tIf customer is switching billtype then new Config is required (vs. Reconfig).\n4.\tSame transaction Id with ConfigType=Reconfig and product billtype is changed from Prepaid to Postpaid or vice versa, then Px shall send an error message\n5.\tIn a Reconfig request for same billtype=postpaid, then \na.\tChanging products may change the deposit amount.\n"
     parameters: []
 components:
   schemas:
