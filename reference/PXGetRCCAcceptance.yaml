@@ -1,0 +1,139 @@
+openapi: 3.1.0
+x-stoplight:
+  id: qlddxan1uoqax
+info:
+  title: PXGetRCCAcceptance
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /Partner/v1/Ordering/pxGetRccAcceptance:
+    post:
+      summary: Get Rcc Acceptance
+      operationId: post-getRccAcceptance
+      responses:
+        '200':
+          description: User Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                New User Bob Fellow:
+                  value:
+                    id: 12
+                    firstName: Bob
+                    lastName: Fellow
+                    email: bob.fellow@gmail.com
+                    dateOfBirth: '1996-08-24'
+                    emailVerified: false
+                    createDate: '2020-11-18'
+        '400':
+          description: Missing Required Information
+        '409':
+          description: Email Already Taken
+        '':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messageStatus:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        timestamp:
+                          type: string
+                        statusMessage:
+                          type: string
+                        internalStatusCode:
+                          type: string
+                        statusCode:
+                          type: string
+                  getRccAcceptanceResponse:
+                    type: object
+                    properties:
+                      accptanceMethod:
+                        type: string
+                      customerResponse:
+                        type: string
+                      transactionId:
+                        type: string
+                x-examples:
+                  example-1:
+                    messageStatus:
+                      - timestamp: '2022-03-24 07:10:27'
+                        statusMessage: ''
+                        internalStatusCode: ''
+                        statusCode: '200'
+                    getRccAcceptanceResponse:
+                      accptanceMethod: email
+                      customerResponse: Accepted
+                      transactionId: 1648122834765bbe
+              examples:
+                getRccAccpetanceResponse:
+                  value:
+                    messageStatus:
+                      - timestamp: '2022-03-24 07:10:27'
+                        statusMessage: ''
+                        internalStatusCode: ''
+                        statusCode: '200'
+                    getRccAcceptanceResponse:
+                      accptanceMethod: email
+                      customerResponse: Accepted
+                      transactionId: 1648122834765bbe
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                partnerId:
+                  type: string
+                salesCode:
+                  type: string
+                transactionId:
+                  type: string
+                partnerOrderId:
+                  type: string
+              x-examples:
+                example-1:
+                  partnerId: PX000125
+                  salesCode: '9999494'
+                  transactionId: 1648122834765bbe
+                  partnerOrderId: Tim_API_Test1_03_24_22_1
+            examples:
+              getRccAcceptanceRequest:
+                value:
+                  partnerId: PX000125
+                  salesCode: '9999494'
+                  transactionId: 1648122834765bbe
+                  partnerOrderId: Tim_API_Test1_03_24_22_1
+        description: Post the necessary fields for the API to create a new user.
+      description: 'Partners would call this service if they triggered RCC’s to be sent via SMS or Email (rather than delivering verbally). This will retrieve method of acceptance by the customer. Only after acceptance has been confirmed by the customer should this call be made (so that the acceptance confirmation and method will be retrieved). Px will store confirmation of RCC acceptance via method delivered (i.e. verbal, email, or sms). '
+    parameters: []
+components:
+  schemas:
+    GetRccAcceptance:
+      type: object
+      properties:
+        partnerId:
+          type: string
+        salesCode:
+          type: string
+        transactionId:
+          type: string
+        partnerOrderId:
+          type: string
+      x-examples:
+        example-1:
+          partnerId: PX000125
+          salesCode: '9999494'
+          transactionId: 1648122834765bbe
+          partnerOrderId: Tim_API_Test1_03_24_22_1
+      examples:
+        - partnerId: PX000125
+          salesCode: '9999494'
+          transactionId: 1648122834765bbe
+          partnerOrderId: Tim_API_Test1_03_24_22_1
