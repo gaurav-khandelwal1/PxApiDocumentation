@@ -1,0 +1,352 @@
+openapi: 3.1.0
+x-stoplight:
+  id: iojee4wwthqr1
+info:
+  title: PxPrepare
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /Partner/v1/Ordering/pxPrepare:
+    post:
+      summary: Prepare Api
+      operationId: post-prepareApi
+      responses:
+        '200':
+          description: User Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                New User Bob Fellow:
+                  value:
+                    id: 12
+                    firstName: Bob
+                    lastName: Fellow
+                    email: bob.fellow@gmail.com
+                    dateOfBirth: '1996-08-24'
+                    emailVerified: false
+                    createDate: '2020-11-18'
+        '400':
+          description: Missing Required Information
+        '409':
+          description: Email Already Taken
+        '':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messageStatus:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        statusCode:
+                          type: string
+                        internalStatusCode:
+                          type: string
+                        statusMessage:
+                          type: string
+                        timestamp:
+                          type: string
+                  prepareResponse:
+                    type: object
+                    properties:
+                      transactionId:
+                        type: string
+                      portabilityResponse:
+                        type: string
+                x-examples:
+                  example-1:
+                    messageStatus:
+                      - statusCode: '200'
+                        internalStatusCode: ''
+                        statusMessage: ''
+                        timestamp: '2022-03-24 07:06:12'
+                    prepareResponse:
+                      transactionId: 1648122834765bbe
+                      portabilityResponse: 'N'
+              examples:
+                PrepareApiResponse:
+                  value:
+                    messageStatus:
+                      - statusCode: '200'
+                        internalStatusCode: ''
+                        statusMessage: ''
+                        timestamp: '2022-03-24 07:06:12'
+                    prepareResponse:
+                      transactionId: 1648122834765bbe
+                      portabilityResponse: 'N'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                prepareOrderRequest:
+                  type: object
+                  properties:
+                    transactionId:
+                      type: string
+                    partnerId:
+                      type: string
+                    salesCode:
+                      type: string
+                    partnerOrderId:
+                      type: string
+                    addressDetailId:
+                      type: string
+                    productCode:
+                      type: string
+                    promoCode:
+                      type: string
+                    selectedAddOns:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          productCode:
+                            type: string
+                          promoCode:
+                            type: string
+                    paymentId:
+                      type: string
+                    preferredUserName:
+                      type: string
+                    customerInformation:
+                      type: object
+                      properties:
+                        email:
+                          type: string
+                        contactPhone:
+                          type: string
+                        smsCapable:
+                          type: boolean
+                    shippingFirstName:
+                      type: string
+                    shippingLastName:
+                      type: string
+                    shippingAddress:
+                      type: object
+                      properties:
+                        streetAddress:
+                          type: string
+                        unitValue:
+                          type: 'null'
+                        city:
+                          type: string
+                        stateCode:
+                          type: string
+                        zipCode:
+                          type: string
+                    billingInformation:
+                      type: object
+                      properties:
+                        billingAddress:
+                          type: object
+                          properties:
+                            streetAddress:
+                              type: string
+                            unitValue:
+                              type: string
+                            city:
+                              type: string
+                            stateCode:
+                              type: string
+                            zipCode:
+                              type: string
+                        spanishBillOption:
+                          type: boolean
+                        paperlessBillOption:
+                          type: boolean
+                    notificationPreferences:
+                      type: object
+                      properties:
+                        billingAndOrderEmailNotification:
+                          type: boolean
+                        billingAndOrderSMSNotification:
+                          type: boolean
+                    remarks:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          remarkType:
+                            type: string
+                          remarkValue:
+                            type: string
+                    customerIsMoving:
+                      type: boolean
+                    porting:
+                      type: object
+                      properties:
+                        portTN:
+                          type: string
+                        portTNAddress:
+                          type: string
+                        portingAccountNumber:
+                          type: string
+                        carrier:
+                          type: string
+                        carrierAccessPin:
+                          type: string
+              x-examples:
+                example-1:
+                  prepareOrderRequest:
+                    transactionId: 1648122834765bbe
+                    partnerId: PX000125
+                    salesCode: '9999494'
+                    partnerOrderId: ' Tim_API_Test1_03_24_22_1 '
+                    addressDetailId: ' AURORA CO 6684 S KELLERMAN WAY 80016 '
+                    productCode: ' PX_VCE_LD_HSI_140M20M_POSTPAY '
+                    promoCode: ' PX_VCE_LD_HSI_140M20M_POSTPAY_DIS '
+                    selectedAddOns:
+                      - productCode: ' PX_MDM_LEASE_PREM '
+                        promoCode: ''
+                      - productCode: ' PX_SVC_TECHINST_FREE '
+                        promoCode: ''
+                        deviceQuantity: 2
+                      - productCode: ' PX_TECH_PRO '
+                        promoCode: ''
+                      - productCode: ' PX_CYBER_SHIELD '
+                        promoCode: ''
+                    paymentId: ''
+                    preferredUserName: ''
+                    customerInformation:
+                      email: odjwojefowjwqewtwt131@mailinator.com
+                      contactPhone: 919-554-7876
+                      smsCapable: true
+                    shippingFirstName: Tim
+                    shippingLastName: Randall
+                    shippingAddress:
+                      streetAddress: 12 main
+                      unitValue: null
+                      city: Holly Springs
+                      stateCode: NC
+                      zipCode: '27540'
+                    billingInformation:
+                      billingAddress:
+                        streetAddress: 950 WALKER Ave
+                        unitValue: ''
+                        city: Mammoth Springs
+                        stateCode: AR
+                        zipCode: '72554'
+                      spanishBillOption: false
+                      paperlessBillOption: true
+                    notificationPreferences:
+                      billingAndOrderEmailNotification: true
+                      billingAndOrderSMSNotification: false
+                    remarks:
+                      - remarkType: ORDER
+                        remarkValue: Please make sure you close the gate
+                    customerIsMoving: false
+                    porting:
+                      portTN: '3032015487'
+                      portTNAddress: '123 main street Aurora Co 80016 '
+                      portingAccountNumber: '852963147'
+                      carrier: ''
+                      carrierAccessPin: ''
+            examples:
+              PrepareApiRequest:
+                value:
+                  prepareOrderRequest:
+                    transactionId: 1648122834765bbe
+                    partnerId: PX000125
+                    salesCode: '9999494'
+                    partnerOrderId: ' Tim_API_Test1_03_24_22_1 '
+                    addressDetailId: ' AURORA CO 6684 S KELLERMAN WAY 80016 '
+                    productCode: ' PX_VCE_LD_HSI_140M20M_POSTPAY '
+                    promoCode: ' PX_VCE_LD_HSI_140M20M_POSTPAY_DIS '
+                    selectedAddOns:
+                      - productCode: ' PX_MDM_LEASE_PREM '
+                        promoCode: ''
+                      - productCode: ' PX_SVC_TECHINST_FREE '
+                        promoCode: ''
+                        deviceQuantity: 2
+                      - productCode: ' PX_TECH_PRO '
+                        promoCode: ''
+                      - productCode: ' PX_CYBER_SHIELD '
+                        promoCode: ''
+                    paymentId: ''
+                    preferredUserName: ''
+                    customerInformation:
+                      email: odjwojefowjwqewtwt131@mailinator.com
+                      contactPhone: 919-554-7876
+                      smsCapable: true
+                    shippingFirstName: Tim
+                    shippingLastName: Randall
+                    shippingAddress:
+                      streetAddress: 12 main
+                      unitValue: null
+                      city: Holly Springs
+                      stateCode: NC
+                      zipCode: '27540'
+                    billingInformation:
+                      billingAddress:
+                        streetAddress: 950 WALKER Ave
+                        unitValue: ''
+                        city: Mammoth Springs
+                        stateCode: AR
+                        zipCode: '72554'
+                      spanishBillOption: false
+                      paperlessBillOption: true
+                    notificationPreferences:
+                      billingAndOrderEmailNotification: true
+                      billingAndOrderSMSNotification: false
+                    remarks:
+                      - remarkType: ORDER
+                        remarkValue: Please make sure you close the gate
+                    customerIsMoving: false
+                    porting:
+                      portTN: '3032015487'
+                      portTNAddress: '123 main street Aurora Co 80016 '
+                      portingAccountNumber: '852963147'
+                      carrier: ''
+                      carrierAccessPin: ''
+        description: Post the necessary fields for the API to create a new user.
+      description: "Partner will send the following details in the Prepare API request; example of data to be provided is below (see detailed attributes and sample request-response)\n1.\tPartner authorization details like TransactionId, Salescode, PartnerId, PartnerOrderId\n2.\tSelected Product and Promotion (if applicable)\n3.\tSelected add-ons (i.e. Installation & Modem) and Promotion (if applicable)\n4.\tPartner payment token\na.\tFor prepaid required\nb.\tFor postpaid when deposit is required\n5.\tFor prepaid Customer preferred login username required\n6.\tCustomer information \n7.\tShipping Information (when required)\n8.\tBilling information (when applicable)\n9.\tNotification preferences\n10.\tRemarks\n11.\tPorting details (for future use)\nPx will process the request and sends a success confirmation.  In case of error, Px will send the internal error message code and error message details.\n"
+    parameters: []
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      description: ''
+      examples:
+        - id: 142
+          firstName: Alice
+          lastName: Smith
+          email: alice.smith@gmail.com
+          dateOfBirth: '1997-10-31'
+          emailVerified: true
+          signUpDate: '2019-08-24'
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the given user.
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        dateOfBirth:
+          type: string
+          format: date
+          example: '1997-10-31'
+        emailVerified:
+          type: boolean
+          description: Set to true if the user's email has been verified.
+        createDate:
+          type: string
+          format: date
+          description: The date that the user was created.
+      required:
+        - id
+        - firstName
+        - lastName
+        - email
+        - emailVerified
