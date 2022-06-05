@@ -1,0 +1,186 @@
+openapi: 3.1.0
+x-stoplight:
+  id: dg72ovyjb14q1
+info:
+  title: PxConfirmAppointment
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /Partner/v1/Ordering/ pxConfirmAppointment:
+    post:
+      summary: Confirm Appointment
+      operationId: post-ConfirmAppointment
+      responses:
+        '200':
+          description: User Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messageStatus:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        statusCode:
+                          type: string
+                        internalStatusCode:
+                          type: string
+                        statusMessage:
+                          type: string
+                        timestamp:
+                          type: string
+                  selectAppointmentResponse:
+                    type: object
+                    properties:
+                      transactionId:
+                        type: string
+                x-examples:
+                  example-1:
+                    messageStatus:
+                      - statusCode: '200'
+                        internalStatusCode: ''
+                        statusMessage: ''
+                        timestamp: '2022-03-24 07:07:45'
+                    selectAppointmentResponse:
+                      transactionId: 1648122834765bbe
+              examples:
+                ConfirmAppointmentResponse:
+                  value:
+                    messageStatus:
+                      - statusCode: '200'
+                        internalStatusCode: ''
+                        statusMessage: ''
+                        timestamp: '2022-03-24 07:07:45'
+                    selectAppointmentResponse:
+                      transactionId: 1648122834765bbe
+        '400':
+          description: Missing Required Information
+        '409':
+          description: Email Already Taken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                selectAppointmentRequest:
+                  type: object
+                  properties:
+                    transactionId:
+                      type: string
+                    partnerId:
+                      type: string
+                    salesCode:
+                      type: string
+                    addressDetailId:
+                      type: string
+                    partnerOrderId:
+                      type: string
+                    selectedAppointment:
+                      type: object
+                      properties:
+                        appointmentDate:
+                          type: string
+                        appointmentTime:
+                          type: object
+                          properties:
+                            appointmentAfterTime:
+                              type: string
+                            appointmentBeforeTime:
+                              type: string
+                            appointmentCompleteTime:
+                              type: string
+              x-examples:
+                example-1:
+                  selectAppointmentRequest:
+                    transactionId: 1648122834765bbe
+                    partnerId: PX000125
+                    salesCode: '9999494'
+                    addressDetailId: AURORA CO 6684 S KELLERMAN WAY 80016
+                    partnerOrderId: Tim_API_Test1_03_24_22_1
+                    selectedAppointment:
+                      appointmentDate: 03/30/2022
+                      appointmentTime:
+                        appointmentAfterTime: '09:00 AM'
+                        appointmentBeforeTime: '05:00 PM'
+                        appointmentCompleteTime: '07:15 PM'
+            examples:
+              ConfirmAppointmentResponse:
+                value:
+                  selectAppointmentRequest:
+                    transactionId: 1648122834765bbe
+                    partnerId: PX000125
+                    salesCode: '9999494'
+                    addressDetailId: AURORA CO 6684 S KELLERMAN WAY 80016
+                    partnerOrderId: Tim_API_Test1_03_24_22_1
+                    selectedAppointment:
+                      appointmentDate: 03/30/2022
+                      appointmentTime:
+                        appointmentAfterTime: '09:00 AM'
+                        appointmentBeforeTime: '05:00 PM'
+                        appointmentCompleteTime: '07:15 PM'
+        description: Post the necessary fields for the API to create a new user.
+      description: "Partner will send the following details in the Confirm Appointment API request\n1.\tPartner authorization details\n2.\tAppointment Date\n3.\tAppointment Timeslot\nPx will then send the confirmation of the appointment scheduled for the selected dates \n*the CenturyLink order is not constructed at this point so it is possible the appointment may not be available at the time of construction and the partner may need to repeat these steps (starting at request appointment API).\n"
+    parameters: []
+components:
+  schemas:
+    ConfirmAppointment:
+      type: object
+      properties:
+        selectAppointmentRequest:
+          type: object
+          properties:
+            transactionId:
+              type: string
+            partnerId:
+              type: string
+            salesCode:
+              type: string
+            addressDetailId:
+              type: string
+            partnerOrderId:
+              type: string
+            selectedAppointment:
+              type: object
+              properties:
+                appointmentDate:
+                  type: string
+                appointmentTime:
+                  type: object
+                  properties:
+                    appointmentAfterTime:
+                      type: string
+                    appointmentBeforeTime:
+                      type: string
+                    appointmentCompleteTime:
+                      type: string
+      x-examples:
+        example-1:
+          selectAppointmentRequest:
+            transactionId: 1648122834765bbe
+            partnerId: PX000125
+            salesCode: '9999494'
+            addressDetailId: AURORA CO 6684 S KELLERMAN WAY 80016
+            partnerOrderId: Tim_API_Test1_03_24_22_1
+            selectedAppointment:
+              appointmentDate: 03/30/2022
+              appointmentTime:
+                appointmentAfterTime: '09:00 AM'
+                appointmentBeforeTime: '05:00 PM'
+                appointmentCompleteTime: '07:15 PM'
+      examples:
+        - selectAppointmentRequest:
+            transactionId: 1648122834765bbe
+            partnerId: PX000125
+            salesCode: '9999494'
+            addressDetailId: AURORA CO 6684 S KELLERMAN WAY 80016
+            partnerOrderId: Tim_API_Test1_03_24_22_1
+            selectedAppointment:
+              appointmentDate: 03/30/2022
+              appointmentTime:
+                appointmentAfterTime: '09:00 AM'
+                appointmentBeforeTime: '05:00 PM'
+                appointmentCompleteTime: '07:15 PM'
