@@ -1,0 +1,354 @@
+openapi: 3.1.0
+x-stoplight:
+  id: hayoz5vhi04s5
+info:
+  title: PxCompleteOrder
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /Partner/v1/Ordering/pxCompleteOrder:
+    post:
+      summary: Complete Order
+      operationId: post-completeOrder
+      responses:
+        '200':
+          description: User Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                New User Bob Fellow:
+                  value:
+                    id: 12
+                    firstName: Bob
+                    lastName: Fellow
+                    email: bob.fellow@gmail.com
+                    dateOfBirth: '1996-08-24'
+                    emailVerified: false
+                    createDate: '2020-11-18'
+        '400':
+          description: Missing Required Information
+        '409':
+          description: Email Already Taken
+        '':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messageStatus:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        statusCode:
+                          type: string
+                        internalStatusCode:
+                          type: string
+                        statusMessage:
+                          type: string
+                        timestamp:
+                          type: string
+                  completeOrderResponse:
+                    type: object
+                    properties:
+                      transactionId:
+                        type: string
+                      partnerOrderId:
+                        type: string
+                      accountNumber:
+                        type: string
+                      TelephoneNumber:
+                        type: string
+                      appointmentDate:
+                        type: string
+                      appointmentTime:
+                        type: object
+                        properties:
+                          appointmentAfterTime:
+                            type: string
+                          appointmentBeforeTime:
+                            type: string
+                          appointmentCompleteTime:
+                            type: string
+                      orderOutcome:
+                        type: string
+                      responseCode:
+                        type: integer
+                      partnerResponseMessage:
+                        type: string
+                      customerResponseMessage:
+                        type: string
+                      orderList:
+                        type: object
+                        properties:
+                          order:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                orderNumber:
+                                  type: string
+                                orderType:
+                                  type: string
+                      productsOrderedList:
+                        type: object
+                        properties:
+                          productDetails:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                offerResponse:
+                                  type: object
+                                  properties:
+                                    offerDetails:
+                                      type: array
+                                      items:
+                                        type: object
+                                        properties:
+                                          productName:
+                                            type: string
+                                          promoCode:
+                                            type: string
+                                          productFamilyName:
+                                            type: string
+                                          productCode:
+                                            type: string
+                                          compCode:
+                                            type: string
+                                          action:
+                                            type: string
+                                          quantity:
+                                            type: string
+                      ConfirmationPageGenericDescription:
+                        type: string
+                      CustomerServiceTelephoneNumber:
+                        type: string
+                x-examples:
+                  example-1:
+                    messageStatus:
+                      - statusCode: '200'
+                        internalStatusCode: ''
+                        statusMessage: ''
+                        timestamp: '2022-03-24 07:10:52'
+                    completeOrderResponse:
+                      transactionId: 1648122834765bbe
+                      partnerOrderId: Tim_API_Test1_03_24_22_1
+                      accountNumber: '698017288'
+                      TelephoneNumber: '3036900957'
+                      appointmentDate: 03/30/2022
+                      appointmentTime:
+                        appointmentAfterTime: '09:00 AM'
+                        appointmentBeforeTime: '05:00 PM'
+                        appointmentCompleteTime: '07:15 PM'
+                      orderOutcome: A
+                      responseCode: 200
+                      partnerResponseMessage: ''
+                      customerResponseMessage: ''
+                      orderList:
+                        order:
+                          - orderNumber: '1009768512'
+                            orderType: CTL
+                      productsOrderedList:
+                        productDetails:
+                          - offerResponse:
+                              offerDetails:
+                                - productName: CenturyLink Internet up to 140Mbps
+                                  promoCode: PX_VCE_LD_HSI_140M20M_POSTPAY_DIS
+                                  productFamilyName: INTERNET
+                                  productCode: PX_HSI_140M20M_POSTPAY
+                                  compCode: HSI 140
+                                  action: I
+                                  quantity: '1'
+                                - productName: Personal TechPro
+                                  promoCode: ''
+                                  productFamilyName: INTERNET
+                                  productCode: PX_TECH_PRO
+                                  compCode: PTP
+                                  action: I
+                                  quantity: '1'
+                                - productName: Cyber Shield
+                                  promoCode: ''
+                                  productFamilyName: INTERNET
+                                  productCode: PX_CYBER_SHIELD
+                                  compCode: CYS
+                                  action: I
+                                  quantity: '1'
+                                - productName: CenturyLink Simply Unlimited Phone
+                                  promoCode: PX_VCE_LD_HSI_140M20M_POSTPAY_DIS
+                                  productFamilyName: VOICE
+                                  productCode: PX_VCE_LD
+                                  compCode: PACKAGE
+                                  action: I
+                                  quantity: '1'
+                      ConfirmationPageGenericDescription: '<p>Thank you for choosing CenturyLink!</p><p>If you have questions, please contact </p>'
+                      CustomerServiceTelephoneNumber: 1-999-999-9999
+              examples:
+                CompleteOrderResponse:
+                  value:
+                    messageStatus:
+                      - statusCode: '200'
+                        internalStatusCode: ''
+                        statusMessage: ''
+                        timestamp: '2022-03-24 07:10:52'
+                    completeOrderResponse:
+                      transactionId: 1648122834765bbe
+                      partnerOrderId: Tim_API_Test1_03_24_22_1
+                      accountNumber: '698017288'
+                      TelephoneNumber: '3036900957'
+                      appointmentDate: 03/30/2022
+                      appointmentTime:
+                        appointmentAfterTime: '09:00 AM'
+                        appointmentBeforeTime: '05:00 PM'
+                        appointmentCompleteTime: '07:15 PM'
+                      orderOutcome: A
+                      responseCode: 200
+                      partnerResponseMessage: ''
+                      customerResponseMessage: ''
+                      orderList:
+                        order:
+                          - orderNumber: '1009768512'
+                            orderType: CTL
+                      productsOrderedList:
+                        productDetails:
+                          - offerResponse:
+                              offerDetails:
+                                - productName: CenturyLink Internet up to 140Mbps
+                                  promoCode: PX_VCE_LD_HSI_140M20M_POSTPAY_DIS
+                                  productFamilyName: INTERNET
+                                  productCode: PX_HSI_140M20M_POSTPAY
+                                  compCode: HSI 140
+                                  action: I
+                                  quantity: '1'
+                                - productName: Personal TechPro
+                                  promoCode: ''
+                                  productFamilyName: INTERNET
+                                  productCode: PX_TECH_PRO
+                                  compCode: PTP
+                                  action: I
+                                  quantity: '1'
+                                - productName: Cyber Shield
+                                  promoCode: ''
+                                  productFamilyName: INTERNET
+                                  productCode: PX_CYBER_SHIELD
+                                  compCode: CYS
+                                  action: I
+                                  quantity: '1'
+                                - productName: CenturyLink Simply Unlimited Phone
+                                  promoCode: PX_VCE_LD_HSI_140M20M_POSTPAY_DIS
+                                  productFamilyName: VOICE
+                                  productCode: PX_VCE_LD
+                                  compCode: PACKAGE
+                                  action: I
+                                  quantity: '1'
+                      ConfirmationPageGenericDescription: '<p>Thank you for choosing CenturyLink!</p><p>If you have questions, please contact </p>'
+                      CustomerServiceTelephoneNumber: 1-999-999-9999
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                completeOrder:
+                  type: object
+                  properties:
+                    transactionId:
+                      type: string
+                    salesCode:
+                      type: string
+                    partnerOrderId:
+                      type: string
+                    partnerId:
+                      type: string
+                    addressDetailId:
+                      type: string
+                    rccAccepted:
+                      type: boolean
+                    paymentId:
+                      type: string
+                    comboAccountInfo:
+                      type: object
+                      properties:
+                        accountProvider:
+                          type: 'null'
+                        accountId:
+                          type: 'null'
+                    giftCard:
+                      type: string
+              x-examples:
+                example-1:
+                  completeOrder:
+                    transactionId: 1648122834765bbe
+                    salesCode: '9999494'
+                    partnerOrderId: Tim_API_Test1_03_24_22_1
+                    partnerId: PX000125
+                    addressDetailId: AURORA CO 6684 S KELLERMAN WAY 80016
+                    rccAccepted: true
+                    paymentId: ''
+                    comboAccountInfo:
+                      accountProvider: null
+                      accountId: null
+                    giftCard: ''
+            examples:
+              CompleteOrderRequest:
+                value:
+                  completeOrder:
+                    transactionId: 1648122834765bbe
+                    salesCode: '9999494'
+                    partnerOrderId: Tim_API_Test1_03_24_22_1
+                    partnerId: PX000125
+                    addressDetailId: AURORA CO 6684 S KELLERMAN WAY 80016
+                    rccAccepted: true
+                    paymentId: ''
+                    comboAccountInfo:
+                      accountProvider: null
+                      accountId: null
+                    giftCard: ''
+        description: Post the necessary fields for the API to create a new user.
+      description: "Partner will send the following details in the Complete API request\n1.\tPartner authorization details\n2.\tRCC Accepted\nPx will then send the order details in the response\n"
+    parameters: []
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      description: ''
+      examples:
+        - id: 142
+          firstName: Alice
+          lastName: Smith
+          email: alice.smith@gmail.com
+          dateOfBirth: '1997-10-31'
+          emailVerified: true
+          signUpDate: '2019-08-24'
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the given user.
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        dateOfBirth:
+          type: string
+          format: date
+          example: '1997-10-31'
+        emailVerified:
+          type: boolean
+          description: Set to true if the user's email has been verified.
+        createDate:
+          type: string
+          format: date
+          description: The date that the user was created.
+      required:
+        - id
+        - firstName
+        - lastName
+        - email
+        - emailVerified
