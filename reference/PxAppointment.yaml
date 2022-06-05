@@ -1,0 +1,542 @@
+openapi: 3.1.0
+x-stoplight:
+  id: 0w9v9s2prmxxq
+info:
+  title: PxAppointment
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /Partner/v1/Ordering/ pxRequestAppointment:
+    post:
+      summary: Px Appointment Api
+      operationId: post-appointmentApi
+      responses:
+        '200':
+          description: User Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                New User Bob Fellow:
+                  value:
+                    id: 12
+                    firstName: Bob
+                    lastName: Fellow
+                    email: bob.fellow@gmail.com
+                    dateOfBirth: '1996-08-24'
+                    emailVerified: false
+                    createDate: '2020-11-18'
+        '400':
+          description: Missing Required Information
+        '409':
+          description: Email Already Taken
+        '':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messageStatus:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        statusCode:
+                          type: string
+                        internalStatusCode:
+                          type: string
+                        statusMessage:
+                          type: string
+                        timestamp:
+                          type: string
+                  schedulingResponse:
+                    type: object
+                    properties:
+                      transactionId:
+                        type: string
+                      appointmentText:
+                        type: string
+                      potentialAppointments:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            appointmentDate:
+                              type: string
+                            appointmentTime:
+                              type: object
+                              properties:
+                                appointmentAfterTime:
+                                  type: string
+                                appointmentBeforeTime:
+                                  type: string
+                                appointmentCompleteTime:
+                                  type: string
+                x-examples:
+                  example-1:
+                    messageStatus:
+                      - statusCode: '200'
+                        internalStatusCode: ''
+                        statusMessage: ''
+                        timestamp: '2022-03-24 07:06:39'
+                    schedulingResponse:
+                      transactionId: 1648122834765bbe
+                      appointmentText: Please select the date you would like CenturyLink to activate your service(s)
+                      potentialAppointments:
+                        - appointmentDate: 03/28/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 03/28/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 03/29/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 03/29/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 03/30/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 03/30/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 03/31/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 03/31/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/01/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/01/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/04/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/04/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/05/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/05/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/06/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/06/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/07/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/07/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/08/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/08/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/11/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/11/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/12/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/12/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/13/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/14/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/14/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/15/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/15/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/18/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/18/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/19/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/19/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/20/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/21/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/21/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/22/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+              examples:
+                RequestAppointmentResponse:
+                  value:
+                    messageStatus:
+                      - statusCode: '200'
+                        internalStatusCode: ''
+                        statusMessage: ''
+                        timestamp: '2022-03-24 07:06:39'
+                    schedulingResponse:
+                      transactionId: 1648122834765bbe
+                      appointmentText: Please select the date you would like CenturyLink to activate your service(s)
+                      potentialAppointments:
+                        - appointmentDate: 03/28/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 03/28/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 03/29/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 03/29/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 03/30/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 03/30/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 03/31/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 03/31/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/01/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/01/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/04/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/04/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/05/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/05/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/06/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/06/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/07/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/07/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/08/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/08/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/11/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/11/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/12/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/12/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/13/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/14/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/14/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/15/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/15/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/18/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/18/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/19/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/19/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/20/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/21/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+                        - appointmentDate: 04/21/2022
+                          appointmentTime:
+                            appointmentAfterTime: '09:00 AM'
+                            appointmentBeforeTime: '05:00 PM'
+                            appointmentCompleteTime: '07:15 PM'
+                        - appointmentDate: 04/22/2022
+                          appointmentTime:
+                            appointmentAfterTime: '08:00 AM'
+                            appointmentBeforeTime: '06:00 PM'
+                            appointmentCompleteTime: '07:45 PM'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schedulingRequest:
+                  type: object
+                  properties:
+                    transactionId:
+                      type: string
+                    salesCode:
+                      type: string
+                    partnerOrderId:
+                      type: string
+                    partnerId:
+                      type: string
+                    addressDetailId:
+                      type: string
+              x-examples:
+                example-1:
+                  schedulingRequest:
+                    transactionId: 1648122834765bbe
+                    salesCode: '9999494'
+                    partnerOrderId: Tim_API_Test1_03_24_22_1
+                    partnerId: PX000125
+                    addressDetailId: AURORA CO 6684 S KELLERMAN WAY 80016
+            examples:
+              RequestAppointmentRequest:
+                value:
+                  schedulingRequest:
+                    transactionId: 1648122834765bbe
+                    salesCode: '9999494'
+                    partnerOrderId: Tim_API_Test1_03_24_22_1
+                    partnerId: PX000125
+                    addressDetailId: AURORA CO 6684 S KELLERMAN WAY 80016
+        description: Post the necessary fields for the API to create a new user.
+      description: "Partner will send the following details in the Request Appointments API request\n1.\tPartner authorization details \nPx will then send the list of appointments available for a 30-day window that include dates and available timeslots pertaining to those dates  \n"
+    parameters: []
+components:
+  schemas:
+    RequestAppointment:
+      type: object
+      properties:
+        schedulingRequest:
+          type: object
+          properties:
+            transactionId:
+              type: string
+            salesCode:
+              type: string
+            partnerOrderId:
+              type: string
+            partnerId:
+              type: string
+            addressDetailId:
+              type: string
+      x-examples:
+        example-1:
+          schedulingRequest:
+            transactionId: 1648122834765bbe
+            salesCode: '9999494'
+            partnerOrderId: Tim_API_Test1_03_24_22_1
+            partnerId: PX000125
+            addressDetailId: AURORA CO 6684 S KELLERMAN WAY 80016
+      examples:
+        - schedulingRequest:
+            transactionId: 1648122834765bbe
+            salesCode: '9999494'
+            partnerOrderId: Tim_API_Test1_03_24_22_1
+            partnerId: PX000125
+            addressDetailId: AURORA CO 6684 S KELLERMAN WAY 80016
+      description: ''
