@@ -9,7 +9,7 @@ servers:
 paths:
   /HCDEUI/Internal/rest/token/createToken:
     post:
-      summary: Create New User
+      summary: CreateToken
       operationId: post-createToken
       responses:
         '200':
