@@ -312,43 +312,59 @@ paths:
     parameters: []
 components:
   schemas:
-    User:
-      title: User
+    CompleteOrder:
       type: object
-      description: ''
-      examples:
-        - id: 142
-          firstName: Alice
-          lastName: Smith
-          email: alice.smith@gmail.com
-          dateOfBirth: '1997-10-31'
-          emailVerified: true
-          signUpDate: '2019-08-24'
       properties:
-        id:
-          type: integer
-          description: Unique identifier for the given user.
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-          format: email
-        dateOfBirth:
-          type: string
-          format: date
-          example: '1997-10-31'
-        emailVerified:
-          type: boolean
-          description: Set to true if the user's email has been verified.
-        createDate:
-          type: string
-          format: date
-          description: The date that the user was created.
-      required:
-        - id
-        - firstName
-        - lastName
-        - email
-        - emailVerified
+        completeOrder:
+          type: object
+          properties:
+            transactionId:
+              type: string
+            salesCode:
+              type: string
+            partnerOrderId:
+              type: string
+            partnerId:
+              type: string
+            addressDetailId:
+              type: string
+            rccAccepted:
+              type: boolean
+            paymentId:
+              type: string
+            comboAccountInfo:
+              type: object
+              properties:
+                accountProvider:
+                  type: 'null'
+                accountId:
+                  type: 'null'
+            giftCard:
+              type: string
+      x-examples:
+        example-1:
+          completeOrder:
+            transactionId: 1648122834765bbe
+            salesCode: '9999494'
+            partnerOrderId: Tim_API_Test1_03_24_22_1
+            partnerId: PX000125
+            addressDetailId: AURORA CO 6684 S KELLERMAN WAY 80016
+            rccAccepted: true
+            paymentId: ''
+            comboAccountInfo:
+              accountProvider: null
+              accountId: null
+            giftCard: ''
+      examples:
+        - completeOrder:
+            transactionId: 1648122834765bbe
+            salesCode: '9999494'
+            partnerOrderId: Tim_API_Test1_03_24_22_1
+            partnerId: PX000125
+            addressDetailId: AURORA CO 6684 S KELLERMAN WAY 80016
+            rccAccepted: true
+            paymentId: ''
+            comboAccountInfo:
+              accountProvider: null
+              accountId: null
+            giftCard: ''
