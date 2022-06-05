@@ -4,6 +4,7 @@ x-stoplight:
 info:
   title: PxAppointment
   version: '1.0'
+  description: "Partner will send the following details in the Request Appointments API request\n1.\tPartner authorization details \nPx will then send the list of appointments available for a 30-day window that include dates and available timeslots pertaining to those dates  \n"
 servers:
   - url: 'http://localhost:3000'
 paths:

@@ -4,6 +4,7 @@ x-stoplight:
 info:
   title: PXGetRCCAcceptance
   version: '1.0'
+  description: 'Partners would call this service if they triggered RCC’s to be sent via SMS or Email (rather than delivering verbally). This will retrieve method of acceptance by the customer. Only after acceptance has been confirmed by the customer should this call be made (so that the acceptance confirmation and method will be retrieved). Px will store confirmation of RCC acceptance via method delivered (i.e. verbal, email, or sms). '
 servers:
   - url: 'http://localhost:3000'
 paths:

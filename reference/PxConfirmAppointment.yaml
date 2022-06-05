@@ -4,6 +4,7 @@ x-stoplight:
 info:
   title: PxConfirmAppointment
   version: '1.0'
+  description: "Partner will send the following details in the Confirm Appointment API request\n  1.\tPartner authorization details\n  2.\tAppointment Date\n  3.\tAppointment Timeslot\nPx will then send the confirmation of the appointment scheduled for the selected dates \n*the CenturyLink order is not constructed at this point so it is possible the appointment may not be available at the time of construction and the partner may need to repeat these steps (starting at request appointment API).\n"
 servers:
   - url: 'http://localhost:3000'
 paths:

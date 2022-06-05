@@ -4,6 +4,7 @@ x-stoplight:
 info:
   title: PxPrepare
   version: '1.0'
+  description: "Partner will send the following details in the Prepare API request; example of data to be provided is below (see detailed attributes and sample request-response)\n1.\tPartner authorization details like TransactionId, Salescode, PartnerId, PartnerOrderId\n2.\tSelected Product and Promotion (if applicable)\n3.\tSelected add-ons (i.e. Installation & Modem) and Promotion (if applicable)\n4.\tPartner payment token\na.\tFor prepaid required\nb.\tFor postpaid when deposit is required\n5.\tFor prepaid Customer preferred login username required\n6.\tCustomer information \n7.\tShipping Information (when required)\n8.\tBilling information (when applicable)\n9.\tNotification preferences\n10.\tRemarks\n11.\tPorting details (for future use)\nPx will process the request and sends a success confirmation.  In case of error, Px will send the internal error message code and error message details.\n"
 servers:
   - url: 'http://localhost:3000'
 paths:
