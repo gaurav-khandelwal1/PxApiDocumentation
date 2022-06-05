@@ -1,0 +1,124 @@
+openapi: 3.1.0
+x-stoplight:
+  id: cw86toyfhg067
+info:
+  title: PxSendRCC
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /Partner/v1/Ordering/pxSendRcc:
+    post:
+      summary: Create New User
+      operationId: post-sendRcc
+      responses:
+        '200':
+          description: User Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                New User Bob Fellow:
+                  value:
+                    id: 12
+                    firstName: Bob
+                    lastName: Fellow
+                    email: bob.fellow@gmail.com
+                    dateOfBirth: '1996-08-24'
+                    emailVerified: false
+                    createDate: '2020-11-18'
+        '400':
+          description: Missing Required Information
+        '409':
+          description: Email Already Taken
+        '':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sendRccResponse:
+                    type: object
+                    properties:
+                      transactionId:
+                        type: string
+                x-examples:
+                  example-1:
+                    sendRccResponse:
+                      transactionId: 1648122834765bbe
+              examples:
+                SendRCCResponse:
+                  value:
+                    sendRccResponse:
+                      transactionId: 1648122834765bbe
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sendRccBySMS:
+                  type: string
+                sendRccByEmail:
+                  type: string
+                partnerId:
+                  type: string
+                salesCode:
+                  type: string
+                partnerOrderId:
+                  type: string
+                transactionId:
+                  type: string
+              x-examples:
+                example-1:
+                  sendRccBySMS: ''
+                  sendRccByEmail: Timothy.R.Randall@Lumen.com
+                  partnerId: PX000125
+                  salesCode: '9999494'
+                  partnerOrderId: Tim_API_Test1_03_24_22_1
+                  transactionId: 1648122834765bbe
+            examples:
+              SendRccRequest:
+                value:
+                  sendRccBySMS: ''
+                  sendRccByEmail: Timothy.R.Randall@Lumen.com
+                  partnerId: PX000125
+                  salesCode: '9999494'
+                  partnerOrderId: Tim_API_Test1_03_24_22_1
+                  transactionId: 1648122834765bbe
+        description: Post the necessary fields for the API to create a new user.
+      description: 'Partners will call this service if customer requests RCC’s to be sent electronically. This will trigger RCC’s to be sent via SMS or Email (rather than delivering verbally). This will trigger RCC to be sent to the customer in method selected. '
+    parameters: []
+components:
+  schemas:
+    sendRCC:
+      type: object
+      properties:
+        sendRccBySMS:
+          type: string
+        sendRccByEmail:
+          type: string
+        partnerId:
+          type: string
+        salesCode:
+          type: string
+        partnerOrderId:
+          type: string
+        transactionId:
+          type: string
+      x-examples:
+        example-1:
+          sendRccBySMS: ''
+          sendRccByEmail: Timothy.R.Randall@Lumen.com
+          partnerId: PX000125
+          salesCode: '9999494'
+          partnerOrderId: Tim_API_Test1_03_24_22_1
+          transactionId: 1648122834765bbe
+      examples:
+        - sendRccBySMS: ''
+          sendRccByEmail: Timothy.R.Randall@Lumen.com
+          partnerId: PX000125
+          salesCode: '9999494'
+          partnerOrderId: Tim_API_Test1_03_24_22_1
+          transactionId: 1648122834765bbe
