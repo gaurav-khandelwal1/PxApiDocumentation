@@ -2,7 +2,7 @@ openapi: 3.1.0
 x-stoplight:
   id: 0w9v9s2prmxxq
 info:
-  title: PxAppointment
+  title: BOSSPxAppointment
   version: '1.0'
   description: "Partner will send the following details in the Request Appointments API request\n1.\tPartner authorization details \nPx will then send the list of appointments available for a 30-day window that include dates and available timeslots pertaining to those dates  \n"
 servers:

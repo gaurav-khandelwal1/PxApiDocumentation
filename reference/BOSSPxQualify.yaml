@@ -2,7 +2,7 @@ openapi: 3.1.0
 x-stoplight:
   id: jz708b27jjisa
 info:
-  title: PxQualify
+  title: BOSSPxQualify
   version: '1.0'
   description: "1.\tQualify API allows partners to verify an address and get CTL products and bundles qualified for that address.  Partner sends     \n    a.\tPartner authorization details like TransactionId (Px Transaction Id for reference), Salescode, PartnerId, PartnerOrderId           \n    b.\tAddress to qualify \n2.\tThe API also allows partners to select an address in case of multiple near matches retuned by the service.    \n3.\tPartners can also qualify with a different address in case of No-Matches.  Partners cannot requalify on a No-match response.  "
 servers:

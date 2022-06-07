@@ -2,7 +2,7 @@ openapi: 3.1.0
 x-stoplight:
   id: cw86toyfhg067
 info:
-  title: PxSendRCC
+  title: BOSSPxSendRCC
   version: '1.0'
   description: 'Partners will call this service if customer requests RCC’s to be sent electronically. This will trigger RCC’s to be sent via SMS or Email (rather than delivering verbally). This will trigger RCC to be sent to the customer in method selected. '
 servers:

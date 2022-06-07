@@ -2,7 +2,7 @@ openapi: 3.1.0
 x-stoplight:
   id: ljhjy0beogeoz
 info:
-  title: GetRCC
+  title: BOSSGetRCC
   version: '1.0'
   description: "Partner will send the following details in the Get RCC API request.  \n1.\tPartner authorization details\nPx will then the return the appropriate RCC text to be formatted for the partner agent to read out to the customer.\n"
 servers:

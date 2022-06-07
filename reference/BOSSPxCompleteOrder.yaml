@@ -2,7 +2,7 @@ openapi: 3.1.0
 x-stoplight:
   id: hayoz5vhi04s5
 info:
-  title: BASSCompleteOrder
+  title: BOSSPxCompleteOrder
   version: '1.0'
   description: "Partner will send the following details in the Complete API request\n1.\tPartner authorization details\n2.\tRCC Accepted\nPx will then send the order details in the response\n"
 servers:
