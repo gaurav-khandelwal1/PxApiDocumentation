@@ -10,7 +10,7 @@ servers:
 paths:
   /Partner/v1/Ordering/pxPrepare:
     post:
-      summary: Prepare Api
+      summary: BOSSPxPrepareApi
       operationId: post-prepareApi
       responses:
         '200':
